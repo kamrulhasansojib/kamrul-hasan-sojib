@@ -102,9 +102,7 @@ const Hero: React.FC = () => {
           </div>
           <ChevronDown className="w-4 h-4 text-blue-400" />
         </div>
-        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-500">
-          Scroll Down
-        </span>
+        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-500"></span>
       </div>
     </section>
   );
