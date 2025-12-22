@@ -5,13 +5,13 @@ import { Code, Layout, Database, Terminal } from "lucide-react";
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "EcoConnect E-Commerce",
+    title: "E-Waste Management & Recycling Platform",
     description:
-      "A full-stack MERN e-commerce platform with real-time inventory management, stripe integration, and an advanced dashboard for sellers.",
-    image: "https://picsum.photos/seed/eco/800/500",
-    tags: ["REACT", "NODE.JS", "MONGODB", "EXPRESS", "STRIPE"],
-    demoLink: "https://eco-connect-demo.vercel.app", // ADD YOUR DEMO LINK HERE
-    githubLink: "https://github.com/sojib-dev/eco-connect", // ADD YOUR GITHUB LINK HERE
+      "A web-based platform that helps users safely dispose of electronic waste by connecting them with verified recyclers. The system ensures transparent pricing, easy pickup requests, and promotes eco-friendly recycling practices while encouraging responsible waste management.",
+    image: "/public/image/e-waste.png",
+    tags: ["HTML5/CSS", "PHP", "JS", "MySQL"],
+    demoLink: "https://etrieve.liveblog365.com/", // ADD YOUR DEMO LINK HERE
+    githubLink: "https://github.com/kamrulhasansojib/E-Waste-Recycling-System", // ADD YOUR GITHUB LINK HERE
   },
   {
     id: 2,
