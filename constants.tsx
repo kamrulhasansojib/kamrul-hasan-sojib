@@ -33,36 +33,6 @@ export const PROJECTS: Project[] = [
     demoLink: "https://secureauth-pro.herokuapp.com", // ADD YOUR DEMO LINK HERE
     githubLink: "https://github.com/sojib-dev/secure-auth", // ADD YOUR GITHUB LINK HERE
   },
-  {
-    id: 4,
-    title: "DevSocial Network",
-    description:
-      "A niche social media platform for developers to share code snippets, collaborate on projects, and find potential co-founders.",
-    image: "https://picsum.photos/seed/devsoc/800/500",
-    tags: ["REACT", "FIREBASE", "TAILWIND"],
-    demoLink: "https://devsocial-network.web.app",
-    githubLink: "https://github.com/sojib-dev/devsocial",
-  },
-  {
-    id: 5,
-    title: "Real-Time Chat Engine",
-    description:
-      "High-performance messaging application using Socket.io for instantaneous communication and persistent storage with Redis.",
-    image: "https://picsum.photos/seed/chat/800/500",
-    tags: ["SOCKET.IO", "NODE.JS", "REDIS"],
-    demoLink: "https://chat-engine-sojib.up.railway.app",
-    githubLink: "https://github.com/sojib-dev/chat-engine",
-  },
-  {
-    id: 6,
-    title: "WeatherSphere AI",
-    description:
-      "Weather forecasting application that uses machine learning to predict localized climate patterns based on historical data.",
-    image: "https://picsum.photos/seed/weather/800/500",
-    tags: ["PYTHON", "FLASK", "REACT"],
-    demoLink: "https://weathersphere-ai.netlify.app",
-    githubLink: "https://github.com/sojib-dev/weather-ai",
-  },
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
@@ -109,5 +79,39 @@ export const EDUCATION_TIMELINE: TimelineItem[] = [
     institution: "Jamalpur Zilla School",
     description:
       "Built a solid analytical foundation and developed an early passion for technology and mathematics.",
+  },
+];
+
+export interface Certificate {
+  title: string;
+  issuer: string;
+  date: string;
+  image: string;
+}
+
+export const CERTIFICATES: Certificate[] = [
+  {
+    title: "React - The Complete Guide",
+    issuer: "Udemy",
+    date: "December 2024",
+    image: "/image/certificate-delta-batch-web-development.jpg",
+  },
+  {
+    title: "JavaScript Algorithms",
+    issuer: "Coursera",
+    date: "November 2024",
+    image: "/image/certificate2.png",
+  },
+  {
+    title: "React - The Complete Guide",
+    issuer: "Udemy",
+    date: "December 2024",
+    image: "/image/certificate1.png",
+  },
+  {
+    title: "JavaScript Algorithms",
+    issuer: "Coursera",
+    date: "November 2024",
+    image: "/image/certificate2.png",
   },
 ];
