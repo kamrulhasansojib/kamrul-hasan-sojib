@@ -15,13 +15,13 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "AlgoViz Visualizer",
+    title: "Bug Finder",
     description:
-      "An interactive tool built in C++ and JavaScript to visualize sorting and pathfinding algorithms. Focuses on educational logic and step-by-step execution.",
-    image: "https://picsum.photos/seed/algo/800/500",
-    tags: ["JAVASCRIPT", "C++", "HTML/CSS"],
-    demoLink: "https://algoviz-sojib.netlify.app", // ADD YOUR DEMO LINK HERE
-    githubLink: "https://github.com/sojib-dev/algoviz", // ADD YOUR GITHUB LINK HERE
+      "An intelligent web application that helps developers identify and fix bugs in their code using AI technology. Built with modern web technologies to provide a seamless debugging experience.",
+    image: "/image/bugfinder.png",
+    tags: ["JAVASCRIPT", "React", "HTML/CSS"],
+    demoLink: "https://bug-finder-drab.vercel.app/", // ADD YOUR DEMO LINK HERE
+    githubLink: "https://github.com/kamrulhasansojib/Bug-Finder.git", // ADD YOUR GITHUB LINK HERE
   },
   {
     id: 3,
