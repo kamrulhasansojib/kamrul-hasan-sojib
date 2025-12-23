@@ -170,7 +170,7 @@ const Certifications: React.FC = () => {
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute -top-12 right-0 md:-top-14 md:-right-14 bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all backdrop-blur-sm border border-white/20 group"
+              className="absolute -top-16 right-0 md:-top-14 md:-right-14 bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all backdrop-blur-sm border border-white/20 group"
               aria-label="Close modal"
             >
               <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
