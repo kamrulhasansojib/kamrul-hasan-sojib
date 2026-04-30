@@ -103,15 +103,9 @@ export const CERTIFICATES: Certificate[] = [
     image: "/image/math_ Olympiad.jpeg",
   },
   {
-    title: "React - The Complete Guide",
-    issuer: "Udemy",
-    date: "December 2024",
-    image: "/image/certificate1.png",
-  },
-  {
-    title: "JavaScript Algorithms",
-    issuer: "Coursera",
-    date: "November 2024",
-    image: "/image/certificate2.png",
+    title: "Introduction to Cyber Security",
+    issuer: "Simplilearn SkillUp",
+    date: "30th April 2026",
+    image: "/image/syber-security.jpeg",
   },
 ];
