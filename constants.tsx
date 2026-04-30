@@ -91,7 +91,7 @@ export interface Certificate {
 
 export const CERTIFICATES: Certificate[] = [
   {
-    title: "React - The Complete Guide",
+    title: "Full Stack Web Development",
     issuer: "Apna College, India",
     date: "December 2024",
     image: "/image/certificate-delta-batch-web-development.jpg",
