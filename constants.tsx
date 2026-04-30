@@ -97,9 +97,9 @@ export const CERTIFICATES: Certificate[] = [
     image: "/image/certificate-delta-batch-web-development.jpg",
   },
   {
-    title: "JavaScript Algorithms",
-    issuer: "Coursera",
-    date: "November 2024",
+    title: "Math Olympiad 2023",
+    issuer: "ULAB (University of Liberal Arts Bangladesh)",
+    date: "March 16, 2023",
     image: "/image/certificate2.png",
   },
   {
