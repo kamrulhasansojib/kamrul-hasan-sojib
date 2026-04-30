@@ -100,7 +100,7 @@ export const CERTIFICATES: Certificate[] = [
     title: "Math Olympiad 2023",
     issuer: "ULAB (University of Liberal Arts Bangladesh)",
     date: "March 16, 2023",
-    image: "/image/certificate2.png",
+    image: "/image/math_ Olympiad.jpeg",
   },
   {
     title: "React - The Complete Guide",
