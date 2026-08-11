@@ -1,0 +1,6 @@
+{
+  "name": "Developer Portfolio",
+  "description": "Interactive developer portfolio with split hero layout, organic image crop, gradient border ring, floating tech badges, and responsive design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

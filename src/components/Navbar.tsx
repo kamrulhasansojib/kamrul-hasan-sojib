@@ -1,0 +1,217 @@
+import React, { useState, useEffect } from 'react';
+import { Terminal, Sparkles, Menu, X, Mail, Sun, Moon } from 'lucide-react';
+import { ProfileData } from '../types';
+
+interface NavbarProps {
+  profile: ProfileData;
+  onOpenContact: () => void;
+  isDarkMode?: boolean;
+  onToggleTheme?: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({
+  profile,
+  onOpenContact,
+  isDarkMode = true,
+  onToggleTheme
+}) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header 
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled 
+          ? isDarkMode 
+            ? 'bg-black/85 backdrop-blur-md border-b border-zinc-800/80 py-3 shadow-xl'
+            : 'bg-white/90 backdrop-blur-md border-b border-slate-200 py-3 shadow-md'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          
+          {/* Logo / Name Brand */}
+          <a href="#" className="flex items-center gap-2 group shrink-0">
+            <span className={`font-extrabold text-xl sm:text-2xl tracking-tight transition-colors font-mono whitespace-nowrap ${
+              isDarkMode ? 'text-blue-400 group-hover:text-cyan-300' : 'text-blue-600 group-hover:text-cyan-600'
+            }`}>
+              &lt;Sojib /&gt;
+            </span>
+          </a>
+
+          {/* Desktop / Large Screen Nav Items */}
+          <nav className={`hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm font-semibold whitespace-nowrap ${
+            isDarkMode ? 'text-zinc-200' : 'text-slate-800'
+          }`}>
+            <a href="#" className="hover:text-cyan-400 transition-colors">Home</a>
+            <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
+            <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
+            <a href="#certifications" className="hover:text-cyan-400 transition-colors">Certifications</a>
+            <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="#experience" className="hover:text-cyan-400 transition-colors">Experience</a>
+            <a href="#education" className="hover:text-cyan-400 transition-colors">Education</a>
+            <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
+          </nav>
+
+          {/* Right Action Bar (Large Screens) */}
+          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
+            {/* Dark / Light Mode Toggle Button */}
+            {onToggleTheme && (
+              <button
+                onClick={onToggleTheme}
+                aria-label="Toggle Dark or Light Mode"
+                className={`p-2 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-center shrink-0 ${
+                  isDarkMode 
+                    ? 'bg-zinc-900/90 border-zinc-700/80 text-zinc-200 hover:text-amber-300 hover:border-amber-400/50 hover:bg-zinc-800'
+                    : 'bg-slate-200/90 border-slate-300 text-slate-800 hover:text-indigo-600 hover:border-indigo-400/50 hover:bg-slate-300'
+                }`}
+                title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                {isDarkMode ? (
+                  <Sun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <Moon className="w-4 h-4 text-indigo-600" />
+                )}
+              </button>
+            )}
+
+            {/* Internship Contact CTA */}
+            <button
+              onClick={onOpenContact}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-md shadow-cyan-500/15 cursor-pointer active:scale-95 whitespace-nowrap shrink-0"
+            >
+              <Mail className="w-3.5 h-3.5 shrink-0" />
+              <span className="whitespace-nowrap">Hire Me</span>
+            </button>
+          </div>
+
+          {/* Mobile & Tablet Menu Trigger & Dark Mode Toggle */}
+          <div className="flex lg:hidden items-center gap-2 shrink-0">
+            {onToggleTheme && (
+              <button
+                onClick={onToggleTheme}
+                aria-label="Toggle Dark/Light Mode"
+                className={`p-2 rounded-xl border transition-all shrink-0 ${
+                  isDarkMode 
+                    ? 'bg-zinc-900 border-zinc-800 text-amber-400' 
+                    : 'bg-slate-200 border-slate-300 text-indigo-600'
+                }`}
+              >
+                {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+            )}
+
+            <button
+              onClick={onOpenContact}
+              aria-label="Hire Me"
+              className="p-2 rounded-xl text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all cursor-pointer active:scale-95 shrink-0 flex items-center justify-center shadow-md shadow-cyan-500/15"
+              title="Hire Me"
+            >
+              <Mail className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`p-2 rounded-xl border shrink-0 ${
+                isDarkMode 
+                  ? 'bg-zinc-900 border-zinc-800 text-zinc-300' 
+                  : 'bg-slate-200 border-slate-300 text-slate-800'
+              }`}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+
+        </div>
+
+        {/* Mobile & Tablet Dropdown Nav */}
+        {mobileMenuOpen && (
+          <div className={`lg:hidden mt-4 pt-4 border-t rounded-2xl p-4 space-y-2.5 ${
+            isDarkMode 
+              ? 'border-zinc-800 bg-zinc-950/95 text-zinc-300 backdrop-blur-xl' 
+              : 'border-slate-200 bg-white/95 text-slate-800 shadow-xl backdrop-blur-xl'
+          }`}>
+            <a 
+              href="#" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              Home
+            </a>
+            <a 
+              href="#about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              About
+            </a>
+            <a 
+              href="#skills" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              Skills
+            </a>
+            <a 
+              href="#certifications" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              Certifications
+            </a>
+            <a 
+              href="#projects" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              Projects
+            </a>
+            <a 
+              href="#experience" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              Experience
+            </a>
+            <a 
+              href="#education" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              Education
+            </a>
+            <a 
+              href="#contact" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+            >
+              Contact
+            </a>
+
+            <div className="pt-2 flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenContact();
+                }}
+                className="w-full py-2.5 rounded-xl text-xs font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 text-center shadow-md shadow-cyan-500/15"
+              >
+                Hire Me
+              </button>
+            </div>
+          </div>
+        )}
+
+      </div>
+    </header>
+  );
+};
