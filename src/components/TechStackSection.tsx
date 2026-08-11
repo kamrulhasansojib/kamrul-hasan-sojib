@@ -239,7 +239,7 @@ export const TechStackSection: React.FC = () => {
                   {group.skills.map((skill, skillIdx) => (
                     <div
                       key={skillIdx}
-                      className="px-3 py-1.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-cyan-500/30 text-zinc-200 text-xs sm:text-sm font-medium flex items-center gap-2 shadow-sm hover:bg-zinc-800/90 hover:scale-[1.03] transition-all cursor-default"
+                      className="px-3 py-2 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-cyan-500/30 text-zinc-100 text-sm font-medium flex items-center gap-2 shadow-sm hover:bg-zinc-800/90 hover:scale-[1.03] transition-all cursor-default"
                     >
                       {getSkillIcon(skill.name)}
                       <span>{skill.name}</span>
@@ -262,7 +262,7 @@ export const TechStackSection: React.FC = () => {
               <h4 className="text-sm font-mono font-bold tracking-wider text-cyan-400 uppercase">
                 ADDITIONAL SKILLS:
               </h4>
-              <p className="text-xs sm:text-sm text-zinc-400 font-medium mt-0.5">Productivity & Professional Competencies</p>
+              <p className="text-sm text-zinc-300 font-medium mt-0.5">Productivity & Professional Competencies</p>
             </div>
           </div>
 
@@ -276,7 +276,7 @@ export const TechStackSection: React.FC = () => {
             ].map((skill, idx) => (
               <span
                 key={idx}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-medium border ${skill.color} flex items-center gap-2 shadow-sm hover:scale-[1.03] transition-all cursor-default`}
+                className={`px-4 py-2 rounded-xl text-sm font-mono font-medium border ${skill.color} flex items-center gap-2 shadow-sm hover:scale-[1.03] transition-all cursor-default`}
               >
                 {skill.icon}
                 <span>{skill.name}</span>

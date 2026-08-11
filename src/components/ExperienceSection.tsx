@@ -155,7 +155,7 @@ export const ExperienceSection: React.FC = () => {
                     <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Key Contributions & Impact</h4>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                       {item.achievements.map((ach, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300 bg-zinc-900/40 p-2.5 sm:p-3 rounded-xl border border-zinc-800/60">
+                        <li key={idx} className="flex items-start gap-2.5 text-sm text-zinc-200 bg-zinc-900/40 p-2.5 sm:p-3 rounded-xl border border-zinc-800/60">
                           <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                           <span className="leading-snug">{ach}</span>
                         </li>
@@ -164,11 +164,11 @@ export const ExperienceSection: React.FC = () => {
                   </div>
 
                   <div className="pt-4 border-t border-zinc-900/80 flex flex-wrap items-center gap-2">
-                    <span className="text-xs sm:text-sm font-semibold text-zinc-400 mr-2">Technologies:</span>
+                    <span className="text-sm font-semibold text-zinc-400 mr-2">Technologies:</span>
                     {item.skillsUsed.map((sk, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono font-medium bg-zinc-900/90 text-cyan-300 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors"
+                        className="px-3 py-1.5 rounded-xl text-sm font-mono font-medium bg-zinc-900/90 text-cyan-300 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors"
                       >
                         {sk}
                       </span>
@@ -223,7 +223,7 @@ export const ExperienceSection: React.FC = () => {
                     </h4>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                       {item.highlights.map((hl, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300 bg-zinc-900/40 p-2.5 sm:p-3 rounded-xl border border-zinc-800/60">
+                        <li key={idx} className="flex items-start gap-2.5 text-sm text-zinc-200 bg-zinc-900/40 p-2.5 sm:p-3 rounded-xl border border-zinc-800/60">
                           <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                           <span className="leading-snug">{hl}</span>
                         </li>

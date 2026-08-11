@@ -137,62 +137,62 @@ export const Navbar: React.FC<NavbarProps> = ({
         {mobileMenuOpen && (
           <div className={`lg:hidden mt-4 pt-4 border-t rounded-2xl p-4 space-y-2.5 ${
             isDarkMode 
-              ? 'border-zinc-800 bg-zinc-950/95 text-zinc-300 backdrop-blur-xl' 
+              ? 'border-zinc-800 bg-zinc-950/95 text-zinc-200 backdrop-blur-xl' 
               : 'border-slate-200 bg-white/95 text-slate-800 shadow-xl backdrop-blur-xl'
           }`}>
             <a 
               href="#" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               Home
             </a>
             <a 
               href="#about" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               About
             </a>
             <a 
               href="#skills" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               Skills
             </a>
             <a 
               href="#certifications" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               Certifications
             </a>
             <a 
               href="#projects" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               Projects
             </a>
             <a 
               href="#experience" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               Experience
             </a>
             <a 
               href="#education" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               Education
             </a>
             <a 
               href="#contact" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold hover:text-cyan-400 py-1 transition-colors"
+              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
               Contact
             </a>
@@ -203,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenContact();
                 }}
-                className="w-full py-2.5 rounded-xl text-xs font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 text-center shadow-md shadow-cyan-500/15"
+                className="w-full py-3 rounded-xl text-sm font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 text-center shadow-md shadow-cyan-500/15"
               >
                 Hire Me
               </button>

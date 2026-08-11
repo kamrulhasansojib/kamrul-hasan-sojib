@@ -13,7 +13,7 @@ const ExpandableDescription: React.FC<ExpandableDescriptionProps> = ({ descripti
   return (
     <div>
       <p
-        className={`text-zinc-300 text-sm leading-relaxed ${
+        className={`text-zinc-300 text-sm sm:text-base leading-relaxed ${
           !isExpanded ? 'line-clamp-3 sm:line-clamp-none' : ''
         }`}
       >
@@ -22,7 +22,7 @@ const ExpandableDescription: React.FC<ExpandableDescriptionProps> = ({ descripti
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="sm:hidden mt-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300 inline-flex items-center gap-1 cursor-pointer focus:outline-none"
+        className="sm:hidden mt-1.5 text-xs sm:text-sm font-semibold text-purple-400 hover:text-purple-300 inline-flex items-center gap-1 cursor-pointer focus:outline-none"
       >
         <span>{isExpanded ? 'Read Less' : 'Read More...'}</span>
       </button>
@@ -97,13 +97,13 @@ export const EducationSection: React.FC = () => {
 
                 {/* Highlights */}
                 <div className="space-y-2 pt-2">
-                  <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <h4 className="text-xs sm:text-sm font-semibold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
                     <BookOpen className="w-3.5 h-3.5 text-purple-400" />
                     <span>Key Academic Highlights</span>
                   </h4>
                   <ul className="grid grid-cols-1 gap-2">
                     {item.highlights.map((hl, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
+                      <li key={idx} className="flex items-start gap-2.5 text-sm text-zinc-200">
                         <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                         <span>{hl}</span>
                       </li>
@@ -117,7 +117,7 @@ export const EducationSection: React.FC = () => {
                     {item.skills.map((sk, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 rounded-lg text-xs font-mono font-medium bg-zinc-900 text-purple-300 border border-purple-500/20"
+                        className="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-mono font-medium bg-zinc-900 text-purple-300 border border-purple-500/20"
                       >
                         {sk}
                       </span>

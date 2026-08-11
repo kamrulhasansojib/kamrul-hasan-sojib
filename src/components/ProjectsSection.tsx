@@ -151,7 +151,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       {project.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 rounded-lg text-xs font-mono font-bold tracking-wider text-blue-400 bg-blue-950/40 border border-blue-500/30 shadow-sm"
+                          className="px-3 py-1 rounded-lg text-xs sm:text-sm font-mono font-bold tracking-wider text-blue-400 bg-blue-950/40 border border-blue-500/30 shadow-sm"
                         >
                           {tag}
                         </span>
@@ -176,7 +176,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-black font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95"
+                      className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-black font-bold text-sm sm:text-sm flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95"
                     >
                       <span>Live Demo</span>
                       <ExternalLink className="w-4 h-4 shrink-0 text-black" />

@@ -1,7 +1,20 @@
-import React, { useState } from 'react';
-import { Mail, Send, CheckCircle2, Copy, Check, MapPin, Github, Linkedin, Facebook, Sparkles, Loader2, AlertCircle } from 'lucide-react';
-import { ProfileData } from '../types';
-import { AnimatedMovingLines } from './AnimatedMovingLines';
+import React, { useState } from "react";
+import {
+  Mail,
+  Send,
+  CheckCircle2,
+  Copy,
+  Check,
+  MapPin,
+  Github,
+  Linkedin,
+  Facebook,
+  Sparkles,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
+import { ProfileData } from "../types";
+import { AnimatedMovingLines } from "./AnimatedMovingLines";
 
 interface ContactSectionProps {
   profile: ProfileData;
@@ -9,11 +22,11 @@ interface ContactSectionProps {
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: 'Inquiry',
-    inquiryType: 'Internship / Job Offer',
-    message: ''
+    name: "",
+    email: "",
+    subject: "Inquiry",
+    inquiryType: "Internship / Job Offer",
+    message: "",
   });
 
   const [copied, setCopied] = useState(false);
@@ -33,21 +46,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
     setErrorMessage(null);
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: '4f3278c0-90d4-4b39-be17-54aa94ee3c6f',
+          access_key: "4f3278c0-90d4-4b39-be17-54aa94ee3c6f",
           name: formData.name,
           email: formData.email,
           subject: `${formData.inquiryType} from ${formData.name}`,
           inquiry_type: formData.inquiryType,
           message: formData.message,
-          from_name: 'Portfolio Contact Form'
-        })
+          from_name: "Portfolio Contact Form",
+        }),
       });
 
       const result = await response.json();
@@ -55,25 +68,32 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
       if (result.success) {
         setSubmitted(true);
         setFormData({
-          name: '',
-          email: '',
-          subject: 'Inquiry',
-          inquiryType: 'Internship / Job Offer',
-          message: ''
+          name: "",
+          email: "",
+          subject: "Inquiry",
+          inquiryType: "Internship / Job Offer",
+          message: "",
         });
       } else {
-        setErrorMessage(result.message || 'Failed to send message. Please try again later.');
+        setErrorMessage(
+          result.message || "Failed to send message. Please try again later.",
+        );
       }
     } catch (err) {
-      console.error('Web3Forms submit error:', err);
-      setErrorMessage('Network error occurred. Please check your connection and try again.');
+      console.error("Web3Forms submit error:", err);
+      setErrorMessage(
+        "Network error occurred. Please check your connection and try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="py-20 bg-black text-white relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-20 bg-black text-white relative overflow-hidden"
+    >
       {/* Moving Wave Lines Animated Background */}
       <AnimatedMovingLines />
 
@@ -81,7 +101,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-cyan-600/5 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-cyan-950/60 text-cyan-400 border border-cyan-500/20 mb-3">
@@ -94,7 +113,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto items-stretch">
-          
           {/* Left Contact Details Card (5 cols) */}
           <div className="lg:col-span-5 p-8 rounded-2xl bg-zinc-950 border border-zinc-800/80 space-y-8 shadow-xl h-full flex flex-col justify-between">
             <div>
@@ -103,22 +121,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
               </span>
               <h3 className="text-2xl font-bold text-white">Let's connect!</h3>
               <p className="text-zinc-300 text-base mt-2 leading-relaxed">
-                Reach out for technical interviews, internship inquiries, or project discussions.
+                Reach out for technical interviews, internship inquiries, or
+                project discussions.
               </p>
             </div>
 
             {/* Email Copy Card */}
             <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2">
-              <span className="text-xs text-zinc-500 uppercase tracking-wider font-semibold">Email Address</span>
+              <span className="text-xs text-zinc-500 uppercase tracking-wider font-semibold">
+                Email Address
+              </span>
               <div className="flex items-center justify-between gap-2">
-                <span className="text-sm font-mono text-cyan-300 truncate">{profile.email}</span>
+                <span className="text-sm font-mono text-cyan-300 truncate">
+                  {profile.email}
+                </span>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
                   className="p-2 rounded-lg bg-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-700 transition-colors shrink-0 cursor-pointer"
                   title="Copy Email"
                 >
-                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  {copied ? (
+                    <Check className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
@@ -137,7 +164,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
 
             {/* Socials */}
             <div className="pt-4 border-t border-zinc-900">
-              <span className="text-xs text-zinc-500 uppercase tracking-wider font-semibold block mb-3">Profiles</span>
+              <span className="text-xs text-zinc-500 uppercase tracking-wider font-semibold block mb-3">
+                Profiles
+              </span>
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href={profile.githubUrl}
@@ -170,7 +199,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 )}
               </div>
             </div>
-
           </div>
 
           {/* Right Interactive Form (7 cols) */}
@@ -180,9 +208,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 <div className="w-16 h-16 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-400 mx-auto flex items-center justify-center">
                   <CheckCircle2 className="w-8 h-8 text-cyan-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Message sent successfully!</h3>
+                <h3 className="text-2xl font-bold text-white">
+                  Message sent successfully!
+                </h3>
                 <p className="text-zinc-400 text-sm max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out! Your inquiry has been delivered via Web3Forms. I will review your message and get back to you promptly.
+                  Thank you for reaching out! Your inquiry has been delivered
+                  via Web3Forms. I will review your message and get back to you
+                  promptly.
                 </p>
                 <button
                   type="button"
@@ -193,8 +225,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col justify-between h-full space-y-4">
-                
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col justify-between h-full space-y-4"
+              >
                 {errorMessage && (
                   <div className="p-3.5 rounded-xl bg-red-950/80 border border-red-500/40 text-red-300 text-xs flex items-center gap-2.5">
                     <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
@@ -204,63 +238,83 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-zinc-400 mb-1.5">Your Name</label>
+                    <label className="block text-sm font-medium text-zinc-300 mb-1.5">
+                      Your Name
+                    </label>
                     <input
                       type="text"
                       required
                       disabled={isSubmitting}
                       placeholder="Jane Doe"
                       value={formData.name}
-                      onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors disabled:opacity-50"
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-base text-white focus:outline-none focus:border-cyan-500 transition-colors disabled:opacity-50"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-zinc-400 mb-1.5">Your Email</label>
+                    <label className="block text-sm font-medium text-zinc-300 mb-1.5">
+                      Your Email
+                    </label>
                     <input
                       type="email"
                       required
                       disabled={isSubmitting}
                       placeholder="jane@company.com"
                       value={formData.email}
-                      onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors disabled:opacity-50"
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-base text-white focus:outline-none focus:border-cyan-500 transition-colors disabled:opacity-50"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-zinc-400 mb-1.5">Inquiry Reason</label>
+                  <label className="block text-sm font-medium text-zinc-300 mb-1.5">
+                    Inquiry Reason
+                  </label>
                   <select
                     disabled={isSubmitting}
                     value={formData.inquiryType}
-                    onChange={e => setFormData({ ...formData, inquiryType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors cursor-pointer disabled:opacity-50"
+                    onChange={(e) =>
+                      setFormData({ ...formData, inquiryType: e.target.value })
+                    }
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-base text-white focus:outline-none focus:border-cyan-500 transition-colors cursor-pointer disabled:opacity-50"
                   >
-                    <option value="Internship / Job Offer">Internship / Job Offer</option>
-                    <option value="Project">Freelance / Contract Project</option>
+                    <option value="Internship / Job Offer">
+                      Internship / Job Offer
+                    </option>
+                    <option value="Project">
+                      Freelance / Contract Project
+                    </option>
                     <option value="General">General Chat</option>
                   </select>
                 </div>
 
                 <div className="flex-1 flex flex-col min-h-[140px]">
-                  <label className="block text-xs font-medium text-zinc-400 mb-1.5">Message</label>
+                  <label className="block text-sm font-medium text-zinc-300 mb-1.5">
+                    Message
+                  </label>
                   <textarea
                     rows={5}
                     required
                     disabled={isSubmitting}
                     placeholder="Hi Kamrul, we'd love to invite you for an interview..."
                     value={formData.message}
-                    onChange={e => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full flex-1 px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors resize-none min-h-[120px] disabled:opacity-50"
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
+                    className="w-full flex-1 px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-base text-white focus:outline-none focus:border-cyan-500 transition-colors resize-none min-h-[120px] disabled:opacity-50"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all active:scale-95 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-base text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all active:scale-95 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
@@ -277,9 +331,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
               </form>
             )}
           </div>
-
         </div>
-
       </div>
     </section>
   );

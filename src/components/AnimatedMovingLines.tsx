@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 export const AnimatedMovingLines: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -6,12 +6,14 @@ export const AnimatedMovingLines: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
-    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
+    let width = (canvas.width =
+      canvas.parentElement?.clientWidth || window.innerWidth);
+    let height = (canvas.height =
+      canvas.parentElement?.clientHeight || window.innerHeight);
 
     const handleResize = () => {
       if (!canvas || !canvas.parentElement) return;
@@ -38,15 +40,19 @@ export const AnimatedMovingLines: React.FC = () => {
 
       for (let i = 0; i < lineCount; i++) {
         ctx.beginPath();
-        
+
         const t = i / (lineCount - 1); // 0 to 1 across the bundle
-        
+
         // Dynamic pinch and fan out offset for the ribbon shape
         const spreadFactor = Math.sin(t * Math.PI) * 0.8 + 0.2;
 
         // Color selection matching the rich indigo/purple/cyan palette in the image
-        const alpha = Math.max(0.03, (0.12 + Math.sin(time * 0.5 + t * 4) * 0.05) * (1 - Math.abs(t - 0.5) * 1.2));
-        
+        const alpha = Math.max(
+          0.03,
+          (0.12 + Math.sin(time * 0.5 + t * 4) * 0.05) *
+            (1 - Math.abs(t - 0.5) * 1.2),
+        );
+
         if (i % 3 === 0) {
           ctx.strokeStyle = `rgba(168, 85, 247, ${alpha * 1.5})`; // Purple
         } else if (i % 3 === 1) {
@@ -67,11 +73,15 @@ export const AnimatedMovingLines: React.FC = () => {
           const arc = Math.sin(ratio * Math.PI * 1.2) * (height * 0.3);
 
           // Ribbon thickness offset (pinches in the middle, fans out at ends)
-          const offset = (t - 0.5) * (height * 0.45) * (0.6 + 0.8 * Math.sin(ratio * Math.PI));
+          const offset =
+            (t - 0.5) *
+            (height * 0.45) *
+            (0.6 + 0.8 * Math.sin(ratio * Math.PI));
 
           // Moving undulating wave simulation along each line
-          const wave = Math.sin(ratio * 6 - time * 1.5 + i * 0.08) * (18 * spreadFactor) +
-                     Math.cos(ratio * 3 + time * 1.0) * 12;
+          const wave =
+            Math.sin(ratio * 6 - time * 1.5 + i * 0.08) * (18 * spreadFactor) +
+            Math.cos(ratio * 3 + time * 1.0) * 12;
 
           const y = baseY - arc + offset + wave;
 
@@ -102,4 +112,3 @@ export const AnimatedMovingLines: React.FC = () => {
     />
   );
 };
-

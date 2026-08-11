@@ -35,7 +35,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </button>
 
           <div className="absolute bottom-4 left-6 right-6 z-20">
-            <span className={`px-3.5 py-1.5 rounded-full text-xs font-bold font-mono border backdrop-blur-md shadow-md ${getCategoryBadgeClass(project.category)}`}>
+            <span className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold font-mono border backdrop-blur-md shadow-md ${getCategoryBadgeClass(project.category)}`}>
               {project.category}
             </span>
             <h2 
@@ -48,10 +48,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-6">
+        <div className="p-5 sm:p-6 space-y-6">
           <div className="space-y-3 sm:space-y-4">
             {project.longDescription.split('\n\n').map((paragraph, idx) => (
-              <p key={idx} className="text-zinc-300 dark:text-zinc-300 leading-relaxed text-sm sm:text-base">
+              <p key={idx} className="text-zinc-200 dark:text-zinc-200 leading-relaxed text-sm sm:text-base">
                 {paragraph}
               </p>
             ))}
@@ -59,12 +59,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
           {/* Highlights */}
           <div>
-            <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">
+            <h4 className="text-xs sm:text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-3">
               Key Engineering Accomplishments
             </h4>
             <ul className="space-y-2">
               {project.highlights.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-sm text-zinc-300">
+                <li key={idx} className="flex items-start gap-2.5 text-sm sm:text-base text-zinc-200">
                   <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
@@ -74,14 +74,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
           {/* Tech Stack Tags */}
           <div>
-            <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">
+            <h4 className="text-xs sm:text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-3">
               Technologies & Libraries
             </h4>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 rounded-lg text-xs font-medium bg-zinc-900 border border-zinc-800 text-cyan-300"
+                  className="px-3 py-1 rounded-lg text-xs sm:text-sm font-medium bg-zinc-900 border border-zinc-800 text-cyan-300"
                 >
                   {tag}
                 </span>
@@ -95,9 +95,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95"
             >
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-4 h-4 text-black" />
               <span>Live Preview</span>
             </a>
 
@@ -105,7 +105,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-bold text-zinc-300 bg-zinc-900 border border-zinc-800 hover:text-white hover:border-zinc-700 transition-colors"
+              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-zinc-200 bg-zinc-900 border border-zinc-800 hover:text-white hover:border-zinc-700 transition-colors"
             >
               <Github className="w-4 h-4" />
               <span>Source Code</span>

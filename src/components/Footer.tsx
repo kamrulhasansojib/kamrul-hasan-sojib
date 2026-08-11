@@ -62,12 +62,12 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
               </a>
             </div>
 
-            <p className="text-zinc-400 text-xs sm:text-sm max-w-sm leading-relaxed">
+            <p className="text-zinc-300 text-sm sm:text-base max-w-sm leading-relaxed">
               Software Engineer & Cloud Architect candidate specializing in building scalable web applications, robust APIs, and intelligent software systems.
             </p>
 
             {/* Live Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-medium">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -78,18 +78,18 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
 
           {/* Quick Links Column */}
           <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-200 flex items-center gap-1.5">
-              <Code2 className="w-3.5 h-3.5 text-cyan-400" />
+            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-200 flex items-center gap-1.5">
+              <Code2 className="w-4 h-4 text-cyan-400" />
               <span>Quick Navigation</span>
             </h4>
-            <div className="grid grid-cols-2 gap-2 text-xs font-medium">
+            <div className="grid grid-cols-2 gap-2 text-sm font-medium">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-zinc-400 hover:text-cyan-400 transition-colors py-1 flex items-center gap-1 group"
+                  className="text-zinc-300 hover:text-cyan-400 transition-colors py-1 flex items-center gap-1 group"
                 >
-                  <span className="text-zinc-600 group-hover:text-cyan-400 transition-colors">›</span>
+                  <span className="text-zinc-500 group-hover:text-cyan-400 transition-colors">›</span>
                   <span>{link.name}</span>
                 </a>
               ))}
@@ -98,8 +98,8 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
 
           {/* Connect & Time Column */}
           <div className="md:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-200 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-200 flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-cyan-400" />
               <span>Let's Connect</span>
             </h4>
 
@@ -110,7 +110,7 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
                   href={profile.socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer"
+                  className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer"
                   aria-label="GitHub Profile"
                 >
                   <Github className="w-4 h-4" />
@@ -121,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
                   href={profile.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer"
+                  className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer"
                   aria-label="LinkedIn Profile"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -129,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
               )}
               <a
                 href={`mailto:${profile.contactEmail}`}
-                className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer"
+                className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer"
                 aria-label="Send Email"
               >
                 <Mail className="w-4 h-4" />
@@ -138,9 +138,9 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
 
             {/* Live Clock Display */}
             {time && (
-              <div className="pt-1 text-xs text-zinc-500 font-mono flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                <span>Local Time: <span className="text-zinc-300">{time}</span></span>
+              <div className="pt-1 text-xs sm:text-sm text-zinc-400 font-mono flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Local Time: <span className="text-zinc-200 font-semibold">{time}</span></span>
               </div>
             )}
           </div>
@@ -148,19 +148,19 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-zinc-400">
           <div className="flex items-center gap-1.5 text-center sm:text-left">
             <span>© {new Date().getFullYear()} {profile.name}. Designed & Built with</span>
-            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 inline" />
+            <Heart className="w-4 h-4 text-red-500 fill-red-500 inline" />
           </div>
 
           {/* Scroll To Top Button */}
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-xs font-semibold text-zinc-300 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer group active:scale-95"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs sm:text-sm font-bold text-zinc-200 hover:text-white hover:border-cyan-500/50 hover:bg-zinc-800 transition-all cursor-pointer group active:scale-95"
           >
             <span>Back to Top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-cyan-400 group-hover:-translate-y-0.5 transition-transform" />
+            <ArrowUp className="w-4 h-4 text-cyan-400 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
 
