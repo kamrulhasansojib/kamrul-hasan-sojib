@@ -309,7 +309,7 @@ export const educationItems = [
     degree:
       "Bachelor of Science in Computer Science & Engineering (B.Sc in CSE)",
     institution: "University of Liberal Arts Bangladesh (ULAB)",
-    period: "2022 - Present",
+    period: "2022 - Present (Expected 2026)",
     grade: "CGPA: 3.3 / 4.00",
     description:
       "Pursuing a Bachelor's degree in Computer Science & Engineering at the University of Liberal Arts Bangladesh (ULAB), with core coursework in Software Engineering, Data Structures & Algorithms, Database Management Systems, Computer Networks, and Object-Oriented Programming. Actively engaged in hands-on projects and academic research alongside coursework.",

@@ -596,6 +596,34 @@ html.light ::-webkit-scrollbar-thumb:hover {
   }
 }
 
+/* Phone Devices (under 640px) Font Size Adjustments */
+@media (max-width: 639px) {
+  html {
+    font-size: 17px; /* Gentle base font size scaling for phone devices */
+  }
+
+  /* Enhance legibility for body text, tags, badges, buttons, modals & footer on phone screens */
+  p, span, li, button, input, textarea, select, label {
+    line-height: 1.6;
+  }
+
+  .text-xs {
+    font-size: 0.8125rem !important; /* ~13.8px on phones */
+  }
+
+  .text-\[10px\], .text-\[11px\] {
+    font-size: 0.75rem !important; /* ~12.75px on phones */
+  }
+
+  .text-sm {
+    font-size: 0.9375rem !important; /* ~16px on phones */
+  }
+
+  .text-base {
+    font-size: 1.0625rem !important; /* ~18px on phones */
+  }
+}
+
 /* Ensure titles and text overlaid on dark image banners remain crisp white in Light Mode */
 html.light .image-overlay-title,
 html.light .image-overlay-text,
