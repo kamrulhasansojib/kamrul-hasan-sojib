@@ -1,20 +1,28 @@
-import React from 'react';
-import { GraduationCap, Calendar, Award, BookOpen, CheckCircle2 } from 'lucide-react';
-import { educationItems } from '../data/portfolioData';
-import { AnimatedMovingLines } from './AnimatedMovingLines';
+import React from "react";
+import {
+  GraduationCap,
+  Calendar,
+  Award,
+  BookOpen,
+  CheckCircle2,
+} from "lucide-react";
+import { educationItems } from "../data/portfolioData";
+import { AnimatedMovingLines } from "./AnimatedMovingLines";
 
 interface ExpandableDescriptionProps {
   description: string;
 }
 
-const ExpandableDescription: React.FC<ExpandableDescriptionProps> = ({ description }) => {
+const ExpandableDescription: React.FC<ExpandableDescriptionProps> = ({
+  description,
+}) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   return (
     <div>
       <p
         className={`text-zinc-300 text-sm sm:text-base leading-relaxed ${
-          !isExpanded ? 'line-clamp-3 sm:line-clamp-none' : ''
+          !isExpanded ? "line-clamp-3 sm:line-clamp-none" : ""
         }`}
       >
         {description}
@@ -24,7 +32,7 @@ const ExpandableDescription: React.FC<ExpandableDescriptionProps> = ({ descripti
         onClick={() => setIsExpanded(!isExpanded)}
         className="sm:hidden mt-1.5 text-xs sm:text-sm font-semibold text-purple-400 hover:text-purple-300 inline-flex items-center gap-1 cursor-pointer focus:outline-none"
       >
-        <span>{isExpanded ? 'Read Less' : 'Read More...'}</span>
+        <span>{isExpanded ? "Read Less" : "Read More..."}</span>
       </button>
     </div>
   );
@@ -32,16 +40,17 @@ const ExpandableDescription: React.FC<ExpandableDescriptionProps> = ({ descripti
 
 export const EducationSection: React.FC = () => {
   return (
-    <section id="education" className="py-24 bg-black text-white border-b border-zinc-900/80 relative overflow-hidden">
-      
+    <section
+      id="education"
+      className="py-24 bg-black text-white border-b border-zinc-900/80 relative overflow-hidden"
+    >
       {/* Moving Wave Lines Animated Background */}
       <AnimatedMovingLines />
-      
+
       {/* Background glow */}
       <div className="absolute top-1/2 right-10 w-[500px] h-[300px] bg-purple-600/5 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-purple-950/60 text-purple-400 border border-purple-500/20 mb-3">
@@ -52,33 +61,33 @@ export const EducationSection: React.FC = () => {
             Education
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base mt-3 leading-relaxed">
-            Academic background in Computer Science & Engineering, core algorithmic foundations, and academic achievements.
+            Academic background in Computer Science & Engineering, core
+            algorithmic foundations, and academic achievements.
           </p>
         </div>
 
         {/* Education Timeline */}
         <div className="max-w-4xl mx-auto space-y-8 relative">
-          
           {/* Vertical Connector */}
-          <div className="absolute top-6 bottom-6 left-6 sm:left-8 w-[2px] bg-zinc-800" />
+          <div className="hidden sm:block absolute top-6 bottom-6 left-6 sm:left-8 w-[2px] bg-zinc-800" />
 
           {educationItems.map((item) => (
-            <div key={item.id} className="relative pl-14 sm:pl-20 group">
-              
+            <div key={item.id} className="relative pl-0 sm:pl-20 group">
               {/* Icon Node */}
-              <div className="absolute left-3 sm:left-5 top-1 -translate-x-1/2 w-8 h-8 rounded-full bg-zinc-950 border border-zinc-700 group-hover:border-purple-400 group-hover:bg-purple-950/80 transition-all flex items-center justify-center text-purple-400 z-10 shadow-xl">
+              <div className="hidden sm:flex absolute left-3 sm:left-5 top-1 -translate-x-1/2 w-8 h-8 rounded-full bg-zinc-950 border border-zinc-700 group-hover:border-purple-400 group-hover:bg-purple-950/80 transition-all items-center justify-center text-purple-400 z-10 shadow-xl">
                 <GraduationCap className="w-4 h-4" />
               </div>
 
               {/* Card */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-zinc-950/90 border border-zinc-800/90 hover:border-purple-500/40 transition-all duration-300 shadow-2xl space-y-4">
-                
+              <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-zinc-950/90 border border-zinc-800/90 hover:border-purple-500/40 transition-all duration-300 shadow-2xl space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                   <div>
                     <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
                       {item.degree}
                     </h3>
-                    <p className="text-purple-400 font-medium text-sm mt-0.5">{item.institution}</p>
+                    <p className="text-purple-400 font-medium text-sm mt-0.5">
+                      {item.institution}
+                    </p>
                   </div>
 
                   <div className="flex flex-wrap md:flex-col lg:flex-row items-start lg:items-center gap-2 shrink-0">
@@ -103,7 +112,10 @@ export const EducationSection: React.FC = () => {
                   </h4>
                   <ul className="grid grid-cols-1 gap-2">
                     {item.highlights.map((hl, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-sm text-zinc-200">
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2.5 text-sm text-zinc-200"
+                      >
                         <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                         <span>{hl}</span>
                       </li>
@@ -124,14 +136,10 @@ export const EducationSection: React.FC = () => {
                     ))}
                   </div>
                 )}
-
               </div>
-
             </div>
           ))}
-
         </div>
-
       </div>
     </section>
   );
