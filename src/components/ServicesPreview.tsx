@@ -33,7 +33,7 @@ const topServices: PreviewServiceCard[] = [
     title: 'Responsive Website / Landing Page',
     badge: 'Conversion-Focused',
     benefit: 'Fast-loading, high-converting pages optimized for all screen sizes and modern viewports.',
-    priceHint: 'Project-based · from $120',
+    priceHint: 'Project-based pricing',
     deliverables: [
       'Mobile-first responsive layout (Tailwind CSS)',
       'Modern animations & interactive UX elements',
@@ -59,7 +59,7 @@ const topServices: PreviewServiceCard[] = [
     title: 'Figma to React',
     badge: 'Pixel-Perfect',
     benefit: 'Exact 1:1 translation from your Figma or Adobe XD designs to production-ready code.',
-    priceHint: 'Project-based · from $80 / page',
+    priceHint: 'Project-based pricing',
     deliverables: [
       'Pixel-perfect typography, spacing & design tokens',
       'Interactive hover, focus & active states',
@@ -184,21 +184,21 @@ export const ServicesPreview: React.FC<ServicesPreviewProps> = ({ onOpenContact 
           </Link>
         </div>
 
-        {/* Action Buttons: Request a Quote + View all services */}
+        {/* Action Buttons: Request a Quote + View all services (Single row on mobile) */}
         <div className="flex flex-col items-center justify-center gap-3">
-          <div className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
+          <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full max-w-md mx-auto">
             <button
               onClick={handleRequestQuote}
-              className="px-6 sm:px-7 py-3.5 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center gap-2"
+              className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
             >
               <span>Request a Quote</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
             </button>
             <Link
               to="/services"
-              className="px-6 sm:px-7 py-3.5 rounded-xl text-sm sm:text-base font-semibold text-zinc-200 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer flex items-center gap-2"
+              className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-200 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
             >
-              <Layers className="w-4 h-4 text-cyan-400" />
+              <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 shrink-0" />
               <span>View all services (6)</span>
             </Link>
           </div>

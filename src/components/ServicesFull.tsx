@@ -112,7 +112,7 @@ const serviceList: ServiceCard[] = [
     title: 'Responsive Website / Landing Page',
     badge: 'Conversion-Focused',
     benefit: 'Fast-loading, high-converting pages optimized for all devices and screen sizes.',
-    priceHint: 'Project-based · from $120',
+    priceHint: 'Project-based pricing',
     deliverables: [
       'Mobile-first responsive layout (Tailwind CSS)',
       'Modern animations & interactive UX elements',
@@ -166,7 +166,7 @@ const serviceList: ServiceCard[] = [
     title: 'Figma to React',
     badge: 'Pixel-Perfect',
     benefit: 'Exact 1:1 translation from your Figma or Adobe XD designs to production-ready code.',
-    priceHint: 'Project-based · from $80 / page',
+    priceHint: 'Project-based pricing',
     deliverables: [
       'Pixel-perfect typography, spacing & design tokens',
       'Interactive hover, focus & active states',
@@ -192,7 +192,7 @@ const serviceList: ServiceCard[] = [
     title: 'UI Fixes & Frontend Bug Fixing',
     badge: 'Fast Delivery',
     benefit: 'Quick resolution of CSS layout glitches, broken responsive views, and React state issues.',
-    priceHint: 'Quick fixes · from $40',
+    priceHint: 'Project-based pricing',
     deliverables: [
       'Cross-browser compatibility & mobile layout fixes',
       'State bugs & infinite re-rendering fixes',
@@ -362,17 +362,17 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
 
           {/* Primary Top CTA Row with Trust line */}
           <div className="mt-8 flex flex-col items-center justify-center gap-3">
-            <div className="flex flex-wrap items-center justify-center gap-3.5">
+            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
               <button
                 onClick={() => scrollToContact()}
-                className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center gap-2"
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
               >
                 <span>Request a Quote</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
               </button>
               <button
                 onClick={scrollToProjects}
-                className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer"
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
               >
                 View Projects
               </button>
@@ -479,9 +479,9 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
           </div>
 
           {/* Backend-Friendly Note Box (5 Cols - Concise 1-2 lines) */}
-          <div className="lg:col-span-5 rounded-2xl bg-gradient-to-br from-zinc-900/90 via-zinc-950/90 to-blue-950/30 border border-blue-500/20 p-7 sm:p-8 flex flex-col justify-between">
+          <div className="services-backend-card lg:col-span-5 rounded-2xl bg-gradient-to-br from-zinc-900/90 via-zinc-950/90 to-blue-950/30 border border-blue-500/20 p-7 sm:p-8 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs sm:text-sm font-mono font-bold mb-3.5">
+              <div className="services-backend-tag inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs sm:text-sm font-mono font-bold mb-3.5">
                 <Database className="w-4 h-4" />
                 <span>Backend-Aware Advantage</span>
               </div>
@@ -492,8 +492,8 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
                 Frontend-first React developer; can collaborate on REST APIs and handle small Node/Express/database tasks when needed.
               </p>
             </div>
-            <div className="mt-5 pt-4 border-t border-zinc-800 text-xs sm:text-sm font-mono text-zinc-400 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-400" />
+            <div className="services-backend-footer mt-5 pt-4 border-t border-zinc-800 text-xs sm:text-sm font-mono text-zinc-400 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
               <span>Smooth API integration without blocking workflows</span>
             </div>
           </div>
@@ -501,7 +501,7 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
         </div>
 
         {/* 3-Step Process Row */}
-        <div className="rounded-2xl bg-zinc-950/80 border border-zinc-800/90 p-7 sm:p-9 mb-16">
+        <div className="services-process-container rounded-2xl bg-zinc-950/80 border border-zinc-800/90 p-7 sm:p-9 mb-16">
           <div className="text-center max-w-xl mx-auto mb-10">
             <span className="text-sm font-mono font-bold text-cyan-400 uppercase tracking-widest">
               Simple 3-Step Workflow
@@ -515,13 +515,13 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
               return (
                 <div 
                   key={idx}
-                  className="relative p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 flex flex-col items-start hover:border-cyan-500/30 transition-colors"
+                  className="services-process-card relative p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 flex flex-col items-start hover:border-cyan-500/30 transition-colors"
                 >
                   <div className="flex items-center justify-between w-full mb-4">
                     <div className="p-3 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                       <StepIcon className="w-6 h-6" />
                     </div>
-                    <span className="text-3xl font-extrabold font-mono text-zinc-700">
+                    <span className="services-process-number text-3xl font-extrabold font-mono text-zinc-700">
                       {step.step}
                     </span>
                   </div>
@@ -554,9 +554,9 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
               return (
                 <div
                   key={faq.id}
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                  className={`services-faq-card rounded-2xl border transition-all duration-200 overflow-hidden ${
                     isOpen 
-                      ? 'bg-zinc-900/90 border-cyan-500/50 shadow-lg shadow-cyan-950/20' 
+                      ? 'bg-zinc-900/90 border-cyan-500/50 shadow-lg shadow-cyan-950/20 is-open' 
                       : 'bg-zinc-950/70 border-zinc-800/80 hover:border-zinc-700'
                   }`}
                 >
@@ -570,7 +570,7 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
                     }`}>
                       {faq.question}
                     </span>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border transition-transform duration-200 ${
+                    <div className={`services-faq-chevron w-8 h-8 rounded-full flex items-center justify-center shrink-0 border transition-transform duration-200 ${
                       isOpen 
                         ? 'bg-cyan-500/20 border-cyan-500/40 text-cyan-300 rotate-180' 
                         : 'bg-zinc-900 border-zinc-800 text-zinc-400'
@@ -580,7 +580,7 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-zinc-800/60 text-zinc-300 text-sm sm:text-base leading-relaxed animate-in fade-in duration-150">
+                    <div className="services-faq-body px-5 sm:px-6 pb-6 pt-1 border-t border-zinc-800/60 text-zinc-300 text-sm sm:text-base leading-relaxed animate-in fade-in duration-150">
                       <p className="font-normal">{faq.answer}</p>
                       {faq.bullets && (
                         <ul className="mt-3 space-y-1.5 pl-2">
@@ -606,12 +606,12 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
         </div>
 
         {/* Bottom CTA Area */}
-        <div className="text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-6 sm:p-12 relative overflow-hidden">
+        <div className="services-cta-banner text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-6 sm:p-12 relative overflow-hidden">
           <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h3 className="services-cta-title text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
               Have a project in mind or need a frontend specialist?
             </h3>
-            <p className="mt-3 text-xs sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
+            <p className="services-cta-subtitle mt-3 text-xs sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
               Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
             </p>
             
@@ -626,13 +626,13 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
               </button>
               <button
                 onClick={scrollToProjects}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
+                className="cta-secondary-btn flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
               >
                 View Projects
               </button>
             </div>
 
-            <p className="mt-4 text-xs sm:text-sm text-zinc-400 font-mono">
+            <p className="services-cta-note mt-4 text-xs sm:text-sm text-zinc-400 font-mono">
               Typical response time: within 24 hours.
             </p>
           </div>
