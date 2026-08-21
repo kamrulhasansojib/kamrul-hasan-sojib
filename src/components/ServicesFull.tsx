@@ -14,10 +14,12 @@ import {
   Cpu,
   Check,
   ChevronRight,
+  ChevronDown,
   Clock,
   X,
   ShieldCheck,
-  AlertCircle
+  AlertCircle,
+  HelpCircle
 } from 'lucide-react';
 
 interface ServicesFullProps {
@@ -39,6 +41,69 @@ interface ServiceCard {
     notIncluded: string[];
   };
 }
+
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  bullets?: string[];
+  extra?: string;
+}
+
+const faqList: FaqItem[] = [
+  {
+    id: 'faq-1',
+    question: '1) What do you need from me to get started?',
+    answer: 'A short brief is enough. Ideally, share your goals, references/examples you like, brand assets (logo, colors), and any design file (Figma) or existing website link. If you don’t have a design, I can start from a clean UI direction and iterate with you.'
+  },
+  {
+    id: 'faq-2',
+    question: '2) How does pricing and payment work?',
+    answer: 'I offer project-based pricing for well-defined scopes and hourly pricing for ongoing work/bug fixes. For fixed-price projects, I usually work with milestones (e.g., 30–50% upfront, rest on delivery or split by phases).'
+  },
+  {
+    id: 'faq-3',
+    question: '3) What’s the typical timeline?',
+    answer: 'Timelines depend on scope, but here are common ranges:',
+    bullets: [
+      'Landing page: 2–4 business days',
+      'Figma to React: 2–5 business days',
+      'React UI (multi-page): 4–10 business days',
+      'Bug fixes: 24–48 hours for standard issues'
+    ],
+    extra: 'I’ll confirm an exact timeline after reviewing your requirements.'
+  },
+  {
+    id: 'faq-4',
+    question: '4) How many revisions are included?',
+    answer: 'Most projects include 2 revision rounds (small UI adjustments, spacing, copy tweaks). Larger changes or new features can be added as a new milestone.'
+  },
+  {
+    id: 'faq-5',
+    question: '5) Do I get the source code?',
+    answer: 'Yes. You’ll receive the full source code (GitHub repo or zip) and clear handoff notes. If needed, I can also provide simple setup instructions so your team can run and maintain the project.'
+  },
+  {
+    id: 'faq-6',
+    question: '6) Can you work with an existing website or codebase?',
+    answer: 'Yes. I can improve responsiveness, fix UI bugs, redesign sections, or refactor React components in existing projects. Just share the live link and (if possible) repository access.'
+  },
+  {
+    id: 'faq-7',
+    question: '7) Do you handle deployment and hosting?',
+    answer: 'I can deploy frontend projects to Vercel/Netlify and help connect your domain. Hosting/domain costs are paid by the client. If you already have hosting, I can provide a smooth deployment handoff.'
+  },
+  {
+    id: 'faq-8',
+    question: '8) Can you integrate APIs or help with backend tasks?',
+    answer: 'Yes. I’m frontend-first, but I’m backend-aware and can integrate REST APIs, handle authentication flows, and support small Node/Express/database tasks when needed. For larger backend systems, I’m happy to collaborate with your backend developer/team.'
+  },
+  {
+    id: 'faq-9',
+    question: '(Optional extra) Do you offer ongoing support?',
+    answer: 'Yes. I can provide post-delivery support for bug fixes and small adjustments. If you need ongoing improvements, we can set up a monthly retainer or hourly plan.'
+  }
+];
 
 const serviceList: ServiceCard[] = [
   {
@@ -231,7 +296,12 @@ const whatYouGetItems = [
 
 export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => {
   const [selectedService, setSelectedService] = useState<ServiceCard | null>(null);
+  const [openFaqId, setOpenFaqId] = useState<string | null>('faq-1');
   const navigate = useNavigate();
+
+  const toggleFaq = (id: string) => {
+    setOpenFaqId(prev => (prev === id ? null : id));
+  };
 
   // Close modal on Escape key
   useEffect(() => {
@@ -269,7 +339,7 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
   return (
     <section 
       id="services-full" 
-      className="py-16 sm:py-24 bg-black text-white relative border-b border-zinc-900 overflow-hidden"
+      className="pt-4 sm:pt-6 pb-16 sm:pb-24 bg-black text-white relative border-b border-zinc-900 overflow-hidden"
     >
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 -right-32 w-96 h-96 bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
@@ -278,15 +348,15 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Heading & Subheading */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-mono font-medium mb-4">
-            <Sparkles className="w-4 h-4" />
-            <span>Available for Freelance & Contract</span>
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs sm:text-sm font-mono font-medium mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Available for Freelance</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
             Frontend Development <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Services</span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal">
             High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients and product teams.
           </p>
 
@@ -463,30 +533,105 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
           </div>
         </div>
 
-        {/* Bottom CTA Area */}
-        <div className="text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-8 sm:p-12 relative overflow-hidden">
-          <div className="max-w-2xl mx-auto">
+        {/* FAQ Section */}
+        <div id="services-faq" className="mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono font-medium mb-3">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>Got Questions?</span>
+            </div>
             <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Frequently Asked <span className="text-cyan-400">Questions</span>
+            </h3>
+            <p className="text-sm sm:text-base text-zinc-300 mt-2 font-normal">
+              Everything you need to know about working together, project scopes, revisions, and deliverables.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-3.5">
+            {faqList.map((faq) => {
+              const isOpen = openFaqId === faq.id;
+              return (
+                <div
+                  key={faq.id}
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                    isOpen 
+                      ? 'bg-zinc-900/90 border-cyan-500/50 shadow-lg shadow-cyan-950/20' 
+                      : 'bg-zinc-950/70 border-zinc-800/80 hover:border-zinc-700'
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(faq.id)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
+                  >
+                    <span className={`text-base sm:text-lg font-bold transition-colors ${
+                      isOpen ? 'text-cyan-300' : 'text-white'
+                    }`}>
+                      {faq.question}
+                    </span>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border transition-transform duration-200 ${
+                      isOpen 
+                        ? 'bg-cyan-500/20 border-cyan-500/40 text-cyan-300 rotate-180' 
+                        : 'bg-zinc-900 border-zinc-800 text-zinc-400'
+                    }`}>
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-zinc-800/60 text-zinc-300 text-sm sm:text-base leading-relaxed animate-in fade-in duration-150">
+                      <p className="font-normal">{faq.answer}</p>
+                      {faq.bullets && (
+                        <ul className="mt-3 space-y-1.5 pl-2">
+                          {faq.bullets.map((b, i) => (
+                            <li key={i} className="flex items-start gap-2 text-zinc-200 text-xs sm:text-sm">
+                              <span className="text-cyan-400 mt-0.5 font-bold">•</span>
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {faq.extra && (
+                        <p className="mt-3 text-xs sm:text-sm font-medium text-cyan-300/90">
+                          {faq.extra}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Bottom CTA Area */}
+        <div className="text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-6 sm:p-12 relative overflow-hidden">
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
               Have a project in mind or need a frontend specialist?
             </h3>
-            <p className="mt-3 text-sm sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
+            <p className="mt-3 text-xs sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
               Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            
+            {/* Mobile 1-Row Responsive Buttons */}
+            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
               <button
                 onClick={() => scrollToContact()}
-                className="px-7 py-3.5 rounded-xl text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center gap-2.5"
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2.5 whitespace-nowrap"
               >
                 <span>Request a Quote</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
               </button>
               <button
                 onClick={scrollToProjects}
-                className="px-7 py-3.5 rounded-xl text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer"
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
               >
                 View Projects
               </button>
             </div>
+
             <p className="mt-4 text-xs sm:text-sm text-zinc-400 font-mono">
               Typical response time: within 24 hours.
             </p>

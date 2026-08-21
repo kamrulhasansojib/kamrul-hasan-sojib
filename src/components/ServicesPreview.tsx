@@ -99,7 +99,7 @@ export const ServicesPreview: React.FC<ServicesPreviewProps> = ({ onOpenContact 
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-mono font-medium mb-4">
             <Sparkles className="w-4 h-4" />
-            <span>Available for Freelance & Contract</span>
+            <span>Available for Freelance</span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
             Frontend Development <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Services</span>
