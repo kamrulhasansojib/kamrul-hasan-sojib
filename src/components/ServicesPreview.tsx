@@ -148,7 +148,7 @@ export const ServicesPreview: React.FC<ServicesPreviewProps> = ({ onOpenContact 
 
   return (
     <section 
-      id="services-preview" 
+      id="services" 
       className="py-16 sm:py-24 bg-black text-white relative border-b border-zinc-900 overflow-hidden"
     >
       {/* Ambient background glow */}

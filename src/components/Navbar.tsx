@@ -225,18 +225,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               Skills
             </button>
             
-            {/* Services link routing directly to /services */}
-            <Link 
-              to="/services" 
-              className={`hover:text-cyan-400 transition-colors ${
-                location.pathname === '/services' ? 'text-cyan-400' : ''
-              }`}
+            {/* Services link scrolling to #services on landing page */}
+            <button 
+              type="button" 
+              onClick={() => navigateToSection('#services')}
+              className="hover:text-cyan-400 transition-colors cursor-pointer"
             >
               Services
-            </Link>
+            </button>
 
+            {/* Projects link scrolling to #projects on landing page */}
             <button 
-              type="button"
+              type="button" 
               onClick={() => navigateToSection('#projects')}
               className="hover:text-cyan-400 transition-colors cursor-pointer"
             >
@@ -398,17 +398,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               Skills
             </button>
-            <Link 
-              to="/services" 
-              onClick={() => setMobileMenuOpen(false)}
-              className={`block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors ${
-                location.pathname === '/services' ? 'text-cyan-400' : ''
-              }`}
+            <button 
+              type="button" 
+              onClick={() => navigateToSection('#services')}
+              className="block w-full text-left text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors cursor-pointer"
             >
               Services
-            </Link>
+            </button>
             <button 
-              type="button"
+              type="button" 
               onClick={() => navigateToSection('#projects')}
               className="block w-full text-left text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors cursor-pointer"
             >
