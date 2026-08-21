@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @layer base {
-  html, body {
+  html,
+  body {
     max-width: 100vw;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -10,7 +11,16 @@
   html {
     background-color: #000000;
     color: #ffffff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      sans-serif;
   }
 
   html.light {
@@ -31,7 +41,8 @@ html.light ::-webkit-scrollbar-thumb:hover {
 }
 
 /* Full Dynamic Light Theme Overrides */
-html.light, html.light body {
+html.light,
+html.light body {
   background-color: #f8fafc !important;
   color: #0f172a !important;
 }
@@ -75,7 +86,9 @@ html.light .bg-zinc-900\/10 {
   background-color: #ffffff !important;
   color: #0f172a !important;
   border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -2px rgba(15, 23, 42, 0.03) !important;
+  box-shadow:
+    0 4px 20px -2px rgba(15, 23, 42, 0.05),
+    0 2px 6px -2px rgba(15, 23, 42, 0.03) !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -86,7 +99,9 @@ html.light .hover\:border-blue-500\/50:hover,
 html.light .group:hover .bg-\[\#0d0d0f\],
 html.light .group:hover .bg-zinc-900 {
   border-color: #0284c7 !important;
-  box-shadow: 0 16px 32px -8px rgba(2, 132, 199, 0.15), 0 6px 12px -3px rgba(15, 23, 42, 0.04) !important;
+  box-shadow:
+    0 16px 32px -8px rgba(2, 132, 199, 0.15),
+    0 6px 12px -3px rgba(15, 23, 42, 0.04) !important;
 }
 
 /* Inner Card Elements & Secondary Containers */
@@ -108,42 +123,54 @@ html.light .bg-zinc-800\/30 {
   background-color: rgba(6, 78, 59, 0.88) !important;
   color: #6ee7b7 !important;
   border-color: rgba(52, 211, 153, 0.6) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(16, 185, 129, 0.25) !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(16, 185, 129, 0.25) !important;
 }
 
 .category-badge-aiml {
   background-color: rgba(88, 28, 135, 0.88) !important;
   color: #e9d5ff !important;
   border-color: rgba(192, 132, 252, 0.6) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(168, 85, 247, 0.25) !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(168, 85, 247, 0.25) !important;
 }
 
 .category-badge-frontend {
   background-color: rgba(12, 74, 110, 0.88) !important;
   color: #7dd3fc !important;
   border-color: rgba(56, 189, 248, 0.6) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(14, 165, 233, 0.25) !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(14, 165, 233, 0.25) !important;
 }
 
 .category-badge-backend {
   background-color: rgba(120, 53, 15, 0.88) !important;
   color: #fcd34d !important;
   border-color: rgba(251, 191, 36, 0.6) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(245, 158, 11, 0.25) !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(245, 158, 11, 0.25) !important;
 }
 
 .category-badge-academic {
   background-color: rgba(30, 58, 138, 0.88) !important;
   color: #bfdbfe !important;
   border-color: rgba(96, 165, 250, 0.6) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(59, 130, 246, 0.25) !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(59, 130, 246, 0.25) !important;
 }
 
 .category-badge-default {
   background-color: rgba(19, 78, 74, 0.88) !important;
   color: #99f6e4 !important;
   border-color: rgba(45, 212, 191, 0.6) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(20, 184, 166, 0.25) !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(20, 184, 166, 0.25) !important;
 }
 
 /* Light Mode Overrides for Category Badges */
@@ -283,7 +310,7 @@ html.light .bg-purple-950\/40 {
 html.light .bg-blue-950,
 html.light .bg-blue-950\/80,
 html.light .bg-blue-950\/60,
-html.light .bg-blue-950\/40, 
+html.light .bg-blue-950\/40,
 html.light .bg-blue-600\/30 {
   background-color: #dbeafe !important;
   border-color: #93c5fd !important;
@@ -314,7 +341,12 @@ html.light .bg-sky-950\/40 {
 /* Gradient Headings in Light Mode - Deep Blue & Teal for maximum contrast */
 html.light .bg-clip-text.text-transparent {
   color: transparent !important;
-  background-image: linear-gradient(135deg, #1d4ed8 0%, #0284c7 50%, #0f766e 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    #1d4ed8 0%,
+    #0284c7 50%,
+    #0f766e 100%
+  ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
 }
@@ -440,18 +472,24 @@ html.light textarea::placeholder {
 /* Shadows and Depth in Light Mode */
 html.light .shadow-2xl,
 html.light .shadow-xl {
-  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 8px 12px -6px rgba(15, 23, 42, 0.04) !important;
+  box-shadow:
+    0 12px 28px -6px rgba(15, 23, 42, 0.08),
+    0 8px 12px -6px rgba(15, 23, 42, 0.04) !important;
 }
 
 /* Background Grids & Dots in Light Mode */
 html.light .bg-grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(2, 132, 199, 0.12) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(2, 132, 199, 0.12) 1px, transparent 1px) !important;
 }
 
 html.light .bg-dot-pattern {
-  background-image: radial-gradient(circle, rgba(2, 132, 199, 0.2) 1px, transparent 1px) !important;
+  background-image: radial-gradient(
+    circle,
+    rgba(2, 132, 199, 0.2) 1px,
+    transparent 1px
+  ) !important;
 }
 
 /* Modal Backdrops in Light Mode */
@@ -462,14 +500,18 @@ html.light .fixed.inset-0.bg-black\/80 {
 /* Custom Background Patterns for depth behind image */
 .bg-grid-pattern {
   background-size: 24px 24px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
 }
 
 .bg-dot-pattern {
   background-size: 20px 20px;
-  background-image: radial-gradient(circle, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.15) 1px,
+    transparent 1px
+  );
 }
 
 /* Conic gradient rotation animation for border ring */
@@ -483,12 +525,61 @@ html.light .fixed.inset-0.bg-black\/80 {
 }
 
 .animate-conic-spin {
-  animation: spin-slow 12s linear infinite;
+  animation: spin-slow 16s linear infinite;
+  will-change: transform;
+}
+
+/* Subtle Orbit Rotations (Pure Transform, GPU accelerated, 60-120s desktop, 120-180s mobile) */
+@keyframes hero-orbit-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes hero-badge-counter-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.hero-orbit-ring {
+  animation: hero-orbit-spin 80s linear infinite;
+  will-change: transform;
+}
+
+.hero-badge-counter {
+  animation: hero-badge-counter-spin 80s linear infinite;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .hero-orbit-ring {
+    animation-duration: 150s;
+  }
+  .hero-badge-counter {
+    animation-duration: 150s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orbit-ring,
+  .hero-badge-counter,
+  .animate-conic-spin,
+  .animate-float-subtle {
+    animation: none !important;
+  }
 }
 
 /* Float loop animation for hero image (2-3px translate loop) */
 @keyframes float-subtle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -497,12 +588,14 @@ html.light .fixed.inset-0.bg-black\/80 {
 }
 
 .animate-float-subtle {
-  animation: float-subtle 3s ease-in-out infinite;
+  animation: float-subtle 4s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Staggered Floating animations for tech badges */
 @keyframes float-badge-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -511,7 +604,8 @@ html.light .fixed.inset-0.bg-black\/80 {
 }
 
 @keyframes float-badge-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -520,7 +614,8 @@ html.light .fixed.inset-0.bg-black\/80 {
 }
 
 @keyframes float-badge-3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -554,12 +649,16 @@ html.light .fixed.inset-0.bg-black\/80 {
 }
 
 /* Custom scrollbar across entire app and all popup modals/containers */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   scrollbar-width: thin;
   scrollbar-color: #374151 transparent;
 }
 
-html.light *, html.light *::before, html.light *::after {
+html.light *,
+html.light *::before,
+html.light *::after {
   scrollbar-color: #cbd5e1 transparent;
 }
 
@@ -603,7 +702,14 @@ html.light ::-webkit-scrollbar-thumb:hover {
   }
 
   /* Enhance legibility for body text, tags, badges, buttons, modals & footer on phone screens */
-  p, span, li, button, input, textarea, select, label {
+  p,
+  span,
+  li,
+  button,
+  input,
+  textarea,
+  select,
+  label {
     line-height: 1.6;
   }
 
@@ -611,7 +717,8 @@ html.light ::-webkit-scrollbar-thumb:hover {
     font-size: 0.8125rem !important; /* ~13.8px on phones */
   }
 
-  .text-\[10px\], .text-\[11px\] {
+  .text-\[10px\],
+  .text-\[11px\] {
     font-size: 0.75rem !important; /* ~12.75px on phones */
   }
 
@@ -631,5 +738,7 @@ html.light .force-white-text,
 html.light h2.image-overlay-title,
 html.light h3.image-overlay-title {
   color: #ffffff !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+  text-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.95),
+    0 1px 4px rgba(0, 0, 0, 0.8) !important;
 }

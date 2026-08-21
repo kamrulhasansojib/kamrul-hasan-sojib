@@ -39,6 +39,47 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenContact,
   onBadgeClick
 }) => {
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const [isIntersecting, setIsIntersecting] = React.useState(true);
+  const [isTabVisible, setIsTabVisible] = React.useState(typeof document !== 'undefined' ? !document.hidden : true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
+
+  React.useEffect(() => {
+    // Check prefers-reduced-motion
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      setPrefersReducedMotion(motionQuery.matches);
+      const handleMotionChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+      motionQuery.addEventListener('change', handleMotionChange);
+
+      // IntersectionObserver for Hero Section
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsIntersecting(entry.isIntersecting);
+        },
+        { threshold: 0.05 }
+      );
+
+      if (sectionRef.current) {
+        observer.observe(sectionRef.current);
+      }
+
+      // VisibilityChange listener for browser tab
+      const handleVisibilityChange = () => {
+        setIsTabVisible(!document.hidden);
+      };
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      return () => {
+        motionQuery.removeEventListener('change', handleMotionChange);
+        observer.disconnect();
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
+    }
+  }, []);
+
+  const isPaused = !isIntersecting || !isTabVisible || prefersReducedMotion;
+
   // Crop shape styling class mapping
   const getCropShapeClass = (shape: ImageCropStyle) => {
     switch (shape) {
@@ -104,11 +145,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const glowBg = getGlowBgClass(accentGradient);
 
   return (
-    <section className="relative min-h-[85vh] bg-black text-white flex items-center pt-28 sm:pt-32 lg:pt-24 lg:pb-20 pb-12 overflow-hidden border-b border-zinc-900/80 w-full max-w-full">
+    <section 
+      ref={sectionRef}
+      className="relative min-h-[85vh] bg-black text-white flex items-center pt-28 sm:pt-32 lg:pt-24 lg:pb-20 pb-12 overflow-hidden border-b border-zinc-900/80 w-full max-w-full"
+    >
       
-      {/* Background ambient lighting accents */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Background ambient lighting accents with subtle blur */}
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-600/10 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-[70px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         
@@ -130,13 +174,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 {/* Rotating Conic Gradient Border Ring */}
                 <div className={`absolute -inset-[3px] overflow-hidden p-[3px] pointer-events-none ${cropClass}`}>
                   <div 
+                    style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
                     className={`absolute -inset-[100%] bg-conic-gradient bg-[conic-gradient(from_0deg,#3b82f6,#06b6d4,#6366f1,#3b82f6)] animate-conic-spin opacity-85 group-hover:opacity-100 transition-opacity duration-300 ${cropClass}`}
                   />
                 </div>
 
                 {/* Main Image Wrapper with Organic / Circular Crop & Subtle Floating Loop */}
                 <div 
-                  className={`relative w-64 sm:w-80 lg:w-[350px] lg:h-[350px] aspect-square overflow-hidden bg-zinc-950 p-1 transition-transform duration-500 ease-out group-hover:scale-[1.03] animate-float-subtle shadow-2xl ${cropClass}`}
+                  style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+                  className={`relative w-64 sm:w-80 lg:w-[350px] lg:h-[350px] aspect-square overflow-hidden bg-zinc-950 p-1 transition-transform duration-500 ease-out group-hover:scale-[1.03] animate-float-subtle shadow-xl ${cropClass}`}
                 >
                   <img
                     src={resolveImageUrl(profile.avatarUrl, portraitImage)}
@@ -151,15 +197,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
 
                 {/* Subtle Concentric Orbit Rings Background */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.08)] pointer-events-none z-10" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.06)] pointer-events-none z-10" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] sm:w-[430px] sm:h-[430px] lg:w-[500px] lg:h-[500px] rounded-full border border-blue-500/15 pointer-events-none z-10" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full border border-indigo-500/10 pointer-events-none z-10" />
 
                 {/* Continuous Circular Orbital Ring for Pure Icon Badges (Textless) */}
-                <motion.div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[290px] h-[290px] sm:w-[390px] sm:h-[390px] lg:w-[470px] lg:h-[470px] rounded-full pointer-events-none z-20 flex items-center justify-center"
-                  animate={{ rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
+                <div
+                  className="hero-orbit-ring absolute top-1/2 left-1/2 w-[290px] h-[290px] sm:w-[390px] sm:h-[390px] lg:w-[470px] lg:h-[470px] rounded-full pointer-events-none z-20 flex items-center justify-center will-change-transform"
+                  style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
                 >
                   {badges.map((badge, index) => {
                     const totalBadges = badges.length;
@@ -174,16 +219,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       >
                         {/* Positioned at top perimeter of orbit circle */}
                         <div className="-mt-3.5 sm:-mt-5">
-                          <motion.div
-                            animate={{ rotate: -360 }}
-                            transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
-                            style={{ transformOrigin: 'center center' }}
+                          <div
+                            style={{ 
+                              animationPlayState: isPaused ? 'paused' : 'running',
+                              transformOrigin: 'center center' 
+                            }}
                             onClick={() => onBadgeClick?.(badge.name)}
                             title={badge.name}
-                            className="group/badge cursor-pointer pointer-events-auto relative flex items-center justify-center"
+                            className="hero-badge-counter group/badge cursor-pointer pointer-events-auto relative flex items-center justify-center will-change-transform"
                           >
                             {/* Sleek round icon badge without text label */}
-                            <div className={`w-9 h-9 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-zinc-950/90 backdrop-blur-md border border-zinc-700/80 p-1.5 sm:p-2 lg:p-2.5 flex items-center justify-center shadow-2xl hover:border-cyan-400 hover:scale-125 transition-all duration-300 ${badge.bgGlow || 'shadow-cyan-500/20'}`}>
+                            <div className={`w-9 h-9 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-zinc-950/90 backdrop-blur-md border border-zinc-700/80 p-1.5 sm:p-2 lg:p-2.5 flex items-center justify-center shadow-lg hover:border-cyan-400 hover:scale-125 transition-all duration-300 ${badge.bgGlow || 'shadow-cyan-500/10'}`}>
                               {hasImage ? (
                                 <img
                                   src={badge.imageUrl || badge.iconName}
@@ -200,12 +246,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                             <div className="absolute -bottom-7 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-200 bg-zinc-900 border border-zinc-700 text-cyan-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-xl pointer-events-none z-30">
                               {badge.name}
                             </div>
-                          </motion.div>
+                          </div>
                         </div>
                       </div>
                     );
                   })}
-                </motion.div>
+                </div>
 
               </div>
 
