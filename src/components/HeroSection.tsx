@@ -264,7 +264,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               ========================================== */}
           <div className="w-full lg:w-[60%] flex flex-col items-start text-left order-last lg:order-first">
             
-            {/* Left-Aligned "Available for Internships" Badge */}
+            {/* Left-Aligned "Open to Freelance (Remote)" Badge */}
             {profile.availableForInternships && (
               <div 
                 onClick={onOpenContact}
@@ -275,7 +275,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
                 </span>
-                <span className="tracking-wide">Available for Internships</span>
+                <span className="tracking-wide">{profile.internshipType || "Open to Freelance (Remote)"}</span>
                 <span className="text-cyan-400/60 group-hover/badge:translate-x-0.5 transition-transform">→</span>
               </div>
             )}
@@ -289,7 +289,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Role Subtitle */}
             <div className="flex items-center gap-2 mb-4 text-xl sm:text-2xl lg:text-3xl font-medium text-cyan-400/90">
-              <Terminal className="w-6 h-6 text-cyan-400" />
+              <Terminal className="w-6 h-6 text-cyan-400 shrink-0" />
               <h2>{profile.role}</h2>
             </div>
 
@@ -389,15 +389,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <div className="text-xl sm:text-2xl font-bold text-cyan-400 tracking-tight">{profile.projectsCompleted}</div>
                 <div className="text-xs text-zinc-400 mt-0.5 font-medium">Projects Built</div>
               </div>
-              <a 
-                href="#certifications"
-                className="p-3 sm:p-4 rounded-xl bg-zinc-900/80 border border-zinc-800 hover:border-cyan-500/50 transition-colors group cursor-pointer block shadow-md"
-              >
-                <div className="text-xl sm:text-2xl font-bold text-cyan-400 tracking-tight group-hover:text-cyan-300 transition-colors">
-                  {profile.certificationsCount || "2+"}
-                </div>
-                <div className="text-xs text-zinc-400 mt-0.5 font-medium group-hover:text-zinc-300 transition-colors">Certifications</div>
-              </a>
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-900/80 border border-zinc-800 shadow-md">
+                <div className="text-xl sm:text-2xl font-bold text-cyan-400 tracking-tight">100%</div>
+                <div className="text-xs text-zinc-400 mt-0.5 font-medium">Remote Friendly</div>
+              </div>
             </div>
 
           </div>

@@ -28,13 +28,13 @@ export const calculateYearsOfExperience = (
 
 export const initialProfile: ProfileData = {
   name: "Kamrul Hasan Sojib",
-  role: "React Frontend Developer (Backend-aware)",
+  role: "React Frontend Developer",
   avatarUrl: "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786307745/Picsart_26-08-09_01-15-42-718.jpg.jpg",
   tagline:
     "I build fast, responsive React websites for startups and small businesses.",
   bio: "Pixel-perfect Figma-to-React, clean UI, and smooth API integration. I can also collaborate on REST APIs and handle small backend tasks.",
   availableForInternships: true,
-  internshipType: "Available for Freelance and Job Role",
+  internshipType: "Open to Freelance (Remote)",
   location: "Dhaka, Bangladesh (Open to Remote)",
   email: "kamrulhasansojib19@gmail.com",
   githubUrl: "https://github.com/kamrulhasansojib",
