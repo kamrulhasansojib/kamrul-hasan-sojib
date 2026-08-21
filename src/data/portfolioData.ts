@@ -113,10 +113,23 @@ export const sampleProjects: Project[] = [
     category: "Full Stack",
     description:
       "A web-based platform that helps users safely dispose of electronic waste by connecting them with verified recyclers.",
+    problem:
+      "Improper electronic waste disposal creates massive environmental hazards due to toxic heavy metals. Consumers lacked a transparent, incentive-driven way to connect directly with authorized recycling centers.",
+    role: "Full Stack Development & Database Architecture",
+    keyFeatures: [
+      "Multi-Role Portals for Citizens, Verified Recyclers, and Admins",
+      "Automated e-waste condition grading and instant price quotation engine",
+      "Secure transaction management and transparent pickup dispatch tracker"
+    ],
     longDescription:
       "A web-based E-Waste Management Platform designed to help users safely dispose of electronic waste by connecting them with verified recycling companies. I developed the complete system using HTML, CSS, JavaScript, PHP, and SQL/MySQL.\n\nThe platform included separate User, Company, and Admin dashboards. Users could submit details about their electronic waste, including the type, condition, quantity, and other relevant information. Verified recycling companies could review the submitted e-waste details and provide an offer amount based on the waste. Users could then review the offer and proceed with the deal if they agreed with the proposed price.\n\nThe Admin Dashboard was used to manage users, recycling companies, e-waste submissions, offers, and transactions, ensuring that only verified companies could participate in the platform. The system also used a database to securely store and manage user information, company details, e-waste records, offers, and deal-related data. This project helped me gain practical experience in full-stack web development, database management, CRUD operations, user authentication, dashboard development, and connecting PHP with a MySQL database.",
     image:
       "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786307993/e-waste.jpg",
+    screenshots: [
+      "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786307993/e-waste.jpg",
+      "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop"
+    ],
     tags: ["HTML5/CSS", "PHP", "JS", "MySQL"],
     githubUrl: "https://github.com/kamrulhasansojib/E-Waste-Recycling-System",
     liveUrl: "#",
@@ -130,13 +143,26 @@ export const sampleProjects: Project[] = [
   {
     id: "bug-finder",
     title: "Bug Finder - AI Code Debugger",
-    category: "AI / Machine Learning",
+    category: "AI & ML",
     description:
       "An intelligent web application that helps developers identify and fix bugs in their code using AI technology.",
+    problem:
+      "Developers, especially beginners, spend excessive hours troubleshooting obscure syntax errors and runtime bugs without actionable explanations of root causes or optimized code patches.",
+    role: "Frontend / API Integration & AI Logic",
+    keyFeatures: [
+      "Instant real-time code parsing and AI patch suggestions with Gemini API",
+      "Interactive code diff viewer with side-by-side comparison",
+      "Actionable root-cause explanations breaking down complex errors into plain English"
+    ],
     longDescription:
       "A lightning-fast AI-enhanced debugging tool designed to help developers and learners identify, understand, and fix coding errors more efficiently.\n\nUsers can paste their source code into the platform and instantly detect syntax errors, potential bugs, and logical issues. The system provides detailed error explanations and AI-powered insights to help users understand why a problem occurs and how it can be resolved.\n\nIt is designed to make debugging easier for beginners while also providing useful insights for experienced developers. The project focuses on creating a fast, interactive, and user-friendly debugging experience that reduces development time and helps users improve their problem-solving and programming skills.",
     image:
       "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786307992/bugfinder.png",
+    screenshots: [
+      "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786307992/bugfinder.png",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop"
+    ],
     tags: ["JAVASCRIPT", "REACT", "HTML/CSS", "GEMINI API"],
     githubUrl: "https://github.com/kamrulhasansojib/Bug-Finder",
     liveUrl: "https://bug-finder-drab.vercel.app/",
@@ -153,10 +179,23 @@ export const sampleProjects: Project[] = [
     category: "Frontend",
     description:
       "A web-based e-ticket booking platform that allows users to search, book, and manage tickets online through a simple and user-friendly interface.",
+    problem:
+      "Manual and fragmented public transport ticketing caused long queues, manual bookkeeping mistakes, and lack of real-time seat availability transparency.",
+    role: "Frontend UI/UX & API Integration",
+    keyFeatures: [
+      "Interactive seat selection grid with live coach availability",
+      "Fast multi-parameter route and schedule search engine",
+      "Clean administrative dashboard for inventory and booking management"
+    ],
     longDescription:
       "BariJai is a web-based e-ticket booking platform designed to simplify the process of purchasing and managing tickets online.\n\nThe system allows users to search for available routes, view schedules, check seat availability, and book tickets from anywhere at any time. Users can create accounts, manage their bookings, and access ticket information through a secure and user-friendly interface.\n\nThe platform also includes an administrative dashboard for managing routes, schedules, ticket inventory, bookings, and user accounts. By automating the ticketing process, BariJai reduces manual work, improves booking efficiency, and provides a convenient digital solution for both passengers and administrators.",
     image:
       "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786316013/b73c5a3a-4a31-4674-8014-f40e7aad443e.png",
+    screenshots: [
+      "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786316013/b73c5a3a-4a31-4674-8014-f40e7aad443e.png",
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1494783367193-149034c05e8f?q=80&w=800&auto=format&fit=crop"
+    ],
     tags: ["HTML", "CSS", "PHP", "MYSQL", "JavaScript"],
     githubUrl: "https://github.com/kamrulhasansojib/Barijai",
     liveUrl: "#",

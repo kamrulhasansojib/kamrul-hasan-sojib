@@ -338,6 +338,54 @@ html.light .modal-close-btn svg {
   color: #0f172a !important;
 }
 
+/* Project Modal & Projects Page Light Mode Styling */
+html.light .project-modal-dialog {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25) !important;
+}
+
+html.light .modal-problem-card {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+}
+
+html.light .modal-problem-card .text-red-400 {
+  color: #e11d48 !important;
+}
+
+html.light .modal-problem-text {
+  color: #881337 !important;
+}
+
+html.light .modal-role-card {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .modal-role-text {
+  color: #0f172a !important;
+}
+
+html.light .modal-feature-item {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+html.light .modal-github-btn {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light .modal-github-btn:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+  color: #000000 !important;
+}
+
 /* Badges, Chips & Tech Tag Pills in Light Mode */
 html.light .bg-cyan-950,
 html.light .bg-cyan-950\/90,

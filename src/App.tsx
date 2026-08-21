@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from './lib/router';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { ServicesPage } from './pages/ServicesPage';
+import { ProjectsPage } from './pages/ProjectsPage';
 import { ProjectModal } from './components/ProjectModal';
 import { Footer } from './components/Footer';
 
@@ -120,6 +121,16 @@ export default function App() {
           <Route 
             path="/services" 
             element={<ServicesPage onOpenContact={handleOpenContact} />} 
+          />
+          <Route 
+            path="/projects" 
+            element={
+              <ProjectsPage 
+                projects={projects} 
+                onSelectProject={(proj) => setSelectedProject(proj)} 
+                onOpenContact={handleOpenContact} 
+              />
+            } 
           />
           <Route 
             path="*" 

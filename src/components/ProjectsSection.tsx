@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { ExternalLink, Github, ArrowUpRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Sparkles, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Link } from '../lib/router';
 import { Project } from '../types';
 import { resolveImageUrl } from '../utils/imageUtils';
 import { getCategoryBadgeClass } from '../utils/categoryUtils';
@@ -66,8 +67,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
               Featured Projects
             </h2>
-            <p className="text-zinc-300 text-sm sm:text-base lg:text-lg mt-3 max-w-xl leading-relaxed">
-              A collection of web applications, cloud systems, and AI tools engineered with clean architecture.
+            <p className="text-zinc-300 text-sm sm:text-base lg:text-lg mt-3 max-w-2xl leading-relaxed">
+              Selected projects showcasing React UI, API integration, and AI-powered features.
             </p>
           </div>
 
@@ -227,6 +228,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </div>
           )}
 
+        </div>
+
+        {/* View all projects CTA Button */}
+        <div className="mt-12 text-center">
+          <Link
+            to="/projects"
+            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_25px_rgba(56,189,248,0.25)] hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95 group"
+          >
+            <span>View all projects</span>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform" />
+          </Link>
         </div>
 
       </div>
