@@ -5,6 +5,7 @@ import { AboutSection } from './components/AboutSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ProjectModal } from './components/ProjectModal';
 import { TechStackSection } from './components/TechStackSection';
+import { ServicesSection } from './components/ServicesSection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { CertificationsSection } from './components/CertificationsSection';
 import { HighlightsSection } from './components/HighlightsSection';
@@ -135,8 +136,8 @@ export default function App() {
         {/* 3. Skills / Technical Stack Section */}
         <TechStackSection />
 
-        {/* 4. Certifications Section */}
-        <CertificationsSection certifications={sampleCertifications} />
+        {/* 4. Services Section (Conversion-Focused for Freelance Clients) */}
+        <ServicesSection onOpenContact={handleOpenContact} />
 
         {/* 5. Projects Section */}
         <ProjectsSection
@@ -147,10 +148,13 @@ export default function App() {
         {/* 6. Experience & Education Combined Section */}
         <ExperienceSection />
 
-        {/* 7. Highlights, Milestones & Gallery Carousel */}
+        {/* 7. Certifications Section (Placed right under Experience & Education) */}
+        <CertificationsSection certifications={sampleCertifications} />
+
+        {/* 8. Highlights, Milestones & Gallery Carousel */}
         <HighlightsSection highlights={highlightsData} />
 
-        {/* 8. Contact Form & Inquiries Section */}
+        {/* 9. Contact Form & Inquiries Section */}
         <ContactSection profile={activeProfile} />
       </main>
 

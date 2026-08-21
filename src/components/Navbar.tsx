@@ -9,7 +9,9 @@ import {
   User, 
   Briefcase, 
   GraduationCap,
-  Sparkles
+  Award,
+  Sparkles,
+  Wrench
 } from 'lucide-react';
 import { ProfileData } from '../types';
 
@@ -104,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           }`}>
             <a href="#" className="hover:text-cyan-400 transition-colors">Home</a>
             
-            {/* About Dropdown (with Experience & Education) */}
+            {/* About Dropdown (with Overview, Experience, Education & Certifications) */}
             <div 
               ref={dropdownRef}
               className="relative"
@@ -129,7 +131,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {/* Minimalist Floating Dropdown Menu */}
               {aboutDropdownOpen && (
                 <div 
-                  className={`absolute top-full left-0 mt-1.5 w-44 p-1.5 rounded-xl shadow-xl border transition-all duration-150 z-50 backdrop-blur-xl ${
+                  className={`absolute top-full left-0 mt-1.5 w-48 p-1.5 rounded-xl shadow-xl border transition-all duration-150 z-50 backdrop-blur-xl ${
                     isDarkMode 
                       ? 'bg-zinc-950/95 border-zinc-800 text-zinc-200 shadow-cyan-950/20' 
                       : 'bg-white/95 border-slate-200 text-slate-800 shadow-slate-300/40'
@@ -188,12 +190,30 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <GraduationCap className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-400 transition-colors shrink-0" />
                     <span>Education</span>
                   </a>
+
+                  <a
+                    href="#certifications"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToSection('#certifications');
+                      const el = document.getElementById('certifications');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group ${
+                      isDarkMode 
+                        ? 'hover:bg-zinc-800/80 hover:text-cyan-300 text-zinc-300' 
+                        : 'hover:bg-slate-100 hover:text-cyan-600 text-slate-700'
+                    }`}
+                  >
+                    <Award className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-400 transition-colors shrink-0" />
+                    <span>Certifications</span>
+                  </a>
                 </div>
               )}
             </div>
 
             <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
-            <a href="#certifications" className="hover:text-cyan-400 transition-colors">Certifications</a>
+            <a href="#services" className="hover:text-cyan-400 transition-colors">Services</a>
             <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
             <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
           </nav>
@@ -320,6 +340,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     Education
                   </a>
+                  <a 
+                    href="#certifications" 
+                    onClick={() => navigateToSection('#certifications')}
+                    className="block text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors"
+                  >
+                    Certifications
+                  </a>
                 </div>
               )}
             </div>
@@ -332,11 +359,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               Skills
             </a>
             <a 
-              href="#certifications" 
+              href="#services" 
               onClick={() => setMobileMenuOpen(false)}
               className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
             >
-              Certifications
+              Services
             </a>
             <a 
               href="#projects" 
