@@ -135,13 +135,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       {project.category}
                     </span>
                   </div>
-
-                  {/* Top Right Button: Quick View */}
-                  <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-                    <div className="p-2.5 rounded-full bg-black/60 backdrop-blur-md border border-zinc-700/60 text-zinc-300 group-hover:text-cyan-300 group-hover:border-cyan-400 transition-colors quick-view-arrow">
-                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
-                  </div>
                 </div>
 
                 {/* Content & Action Buttons */}
@@ -171,7 +164,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </div>
 
                   {/* Bottom Action Buttons */}
-                  <div className="flex items-center gap-3 pt-2 mt-auto">
+                  <div className="flex items-center gap-2.5 pt-2 mt-auto">
                     <a
                       href={project.liveUrl}
                       target="_blank"
@@ -182,13 +175,23 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       <span>Live Demo</span>
                       <ExternalLink className="w-4 h-4 shrink-0 text-black" />
                     </a>
+                    <button
+                      type="button"
+                      onClick={() => onSelectProject(project)}
+                      className="p-2.5 rounded-xl bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-200 hover:text-cyan-400 hover:border-cyan-500/50 transition-colors shrink-0 flex items-center justify-center shadow-sm modal-github-btn cursor-pointer"
+                      title="View Project Details"
+                      aria-label="View Project Details"
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                    </button>
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-200 hover:text-white transition-colors shrink-0 flex items-center justify-center shadow-sm"
+                      className="p-2.5 rounded-xl bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-200 hover:text-white transition-colors shrink-0 flex items-center justify-center shadow-sm modal-github-btn"
                       title="Source Code"
+                      aria-label="Source Code"
                     >
                       <Github className="w-4 h-4" />
                     </a>
