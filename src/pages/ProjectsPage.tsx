@@ -6,9 +6,6 @@ import {
   Github, 
   ArrowUpRight, 
   Sparkles, 
-  Code2, 
-  CheckCircle2, 
-  Layers, 
   Mail,
   SlidersHorizontal,
   X
@@ -89,10 +86,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 hover:text-cyan-400 transition-colors group cursor-pointer projects-back-link"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Home</span>
+            <span className="sm:hidden">Back</span>
+            <span className="hidden sm:inline">Back to Home</span>
           </Link>
 
-          <div className="text-xs font-mono text-zinc-500">
+          {/* Breadcrumb path - hidden on mobile */}
+          <div className="hidden sm:block text-xs font-mono text-zinc-500">
             <span>Portfolio</span> / <span className="text-cyan-400 font-bold">Projects Directory</span>
           </div>
         </div>
@@ -113,12 +112,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           </p>
         </div>
 
-        {/* Search & Category Filter Toolbar */}
-        <div className="projects-filter-bar rounded-2xl bg-zinc-950/90 border border-zinc-800/90 p-4 sm:p-6 mb-10 shadow-xl">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* Search & Category Filter Toolbar (Visible on Desktop lg+, hidden on mobile and tablet) */}
+        <div className="hidden lg:block projects-filter-bar rounded-2xl bg-zinc-950/90 border border-zinc-800/90 p-4 sm:p-6 mb-10 shadow-xl">
+          <div className="flex items-center justify-between gap-4">
             
             {/* Category Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <div className="flex flex-wrap items-center gap-2">
               {categories.map((cat) => {
                 const isSelected = selectedCategory === cat;
                 return (
@@ -139,11 +138,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             </div>
 
             {/* Search Input Field */}
-            <div className="relative w-full md:w-80">
+            <div className="relative w-80">
               <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search by title, tag, or role..."
+                placeholder="Search by title or tech tag..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="projects-search-input w-full pl-10 pr-10 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 transition-colors"
@@ -194,15 +193,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                       <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
                   </div>
-
-                  {/* Role Bar over image bottom */}
-                  {project.role && (
-                    <div className="absolute bottom-3 left-4 right-4 z-20">
-                      <span className="text-xs font-mono text-cyan-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-cyan-500/20">
-                        {project.role}
-                      </span>
-                    </div>
-                  )}
                 </div>
 
                 {/* Content & Action Buttons */}
@@ -226,21 +216,9 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                     </h3>
 
                     {/* Short Description */}
-                    <p className="project-card-desc text-zinc-300 text-sm sm:text-base leading-relaxed line-clamp-3 mb-4">
+                    <p className="project-card-desc text-zinc-300 text-sm sm:text-base leading-relaxed line-clamp-3 mb-5">
                       {project.description}
                     </p>
-
-                    {/* Key Features Preview (Top 2 bullets) */}
-                    {(project.keyFeatures || project.highlights) && (
-                      <div className="project-card-features mb-5 pt-3 border-t border-zinc-800/80 space-y-1.5">
-                        {(project.keyFeatures || project.highlights).slice(0, 2).map((feat, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-xs text-zinc-400">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
                   </div>
 
                   {/* Bottom Action Buttons */}

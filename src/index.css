@@ -453,17 +453,25 @@ html.light .project-modal-dialog {
   box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25) !important;
 }
 
-html.light .modal-problem-card {
-  background-color: #fff1f2 !important;
-  border-color: #fecdd3 !important;
+html.light .modal-main-title {
+  color: #0f172a !important;
 }
 
-html.light .modal-problem-card .text-red-400 {
-  color: #e11d48 !important;
+html.light .modal-header-section {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .modal-problem-card {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .modal-problem-heading {
+  color: #0f172a !important;
 }
 
 html.light .modal-problem-text {
-  color: #881337 !important;
+  color: #334155 !important;
 }
 
 html.light .modal-role-card {

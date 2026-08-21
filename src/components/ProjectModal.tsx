@@ -81,11 +81,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       onClick={onClose}
     >
       <div 
-        className="project-modal-dialog relative w-full max-w-3xl bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl text-white my-auto max-h-[92vh] flex flex-col"
+        className="project-modal-dialog relative w-full max-w-4xl bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl text-white my-auto max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         
-        {/* Modal Header Bar with Close Button */}
+        {/* Modal Header Image with Close Button */}
         <div className="relative h-48 sm:h-56 md:h-64 w-full bg-zinc-900 overflow-hidden shrink-0">
           <img
             src={resolveImageUrl(screenshots[activeImageIndex] || project.image, 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop')}
@@ -93,45 +93,41 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover transition-all duration-300"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20 z-10" />
           
           {/* Close button with high visibility in both light & dark mode */}
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-white text-zinc-900 hover:bg-zinc-100 shadow-xl border border-zinc-200 transition-transform active:scale-95 modal-close-btn cursor-pointer"
+            className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-black/75 hover:bg-black text-white shadow-xl border border-white/20 transition-transform active:scale-95 modal-close-btn cursor-pointer"
             title="Close modal"
           >
-            <X className="w-5 h-5 text-zinc-900 stroke-[2.5]" />
+            <X className="w-5 h-5 stroke-[2.5]" />
           </button>
-
-          {/* Category & Title Over Image */}
-          <div className="absolute bottom-4 left-5 right-5 sm:left-6 sm:right-6 z-20">
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className={`px-3 py-1 rounded-full text-xs font-bold font-mono border backdrop-blur-md shadow-md ${getCategoryBadgeClass(project.category)}`}>
-                {project.category}
-              </span>
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-zinc-900/80 border border-zinc-700/80 text-cyan-300 backdrop-blur-md">
-                Role: {userRole}
-              </span>
-            </div>
-
-            <h2 
-              className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white image-overlay-title leading-tight"
-              style={{ color: '#ffffff' }}
-            >
-              {project.title}
-            </h2>
-          </div>
         </div>
 
         {/* Modal Scrollable Body */}
         <div className="p-5 sm:p-6 md:p-8 space-y-6 overflow-y-auto flex-1">
           
-          {/* 1. Problem Section */}
-          <div className="rounded-xl p-4 sm:p-5 bg-red-950/20 border border-red-500/25 modal-problem-card">
-            <div className="flex items-center gap-2 mb-2 text-red-400 font-bold text-xs sm:text-sm uppercase tracking-wider">
-              <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+          {/* Modal Header: Category, Role & Title (Outside Image) */}
+          <div className="space-y-2.5 pb-4 border-b border-zinc-800 modal-header-section">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`px-3 py-1 rounded-full text-xs font-bold font-mono border shadow-sm ${getCategoryBadgeClass(project.category)}`}>
+                {project.category}
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-950/40 border border-cyan-500/30 text-cyan-300">
+                Role: {userRole}
+              </span>
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight modal-main-title">
+              {project.title}
+            </h2>
+          </div>
+
+          {/* 1. Problem Section (Normal Subtle Neutral Color, Not Red) */}
+          <div className="rounded-xl p-4 sm:p-5 bg-zinc-900/80 border border-zinc-800 modal-problem-card">
+            <div className="flex items-center gap-2 mb-2 text-zinc-300 font-bold text-xs sm:text-sm uppercase tracking-wider modal-problem-heading">
+              <AlertCircle className="w-4 h-4 shrink-0 text-cyan-400" />
               <span>Problem Statement</span>
             </div>
             <p className="text-zinc-300 text-sm sm:text-base leading-relaxed modal-problem-text">
@@ -229,12 +225,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </div>
 
               {/* Main Screenshot Preview with Prev/Next Controls */}
-              <div className="relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 h-52 sm:h-64 md:h-72 group">
+              <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 h-64 sm:h-80 md:h-[420px] lg:h-[480px] group flex items-center justify-center shadow-inner">
                 <img
                   src={resolveImageUrl(screenshots[activeImageIndex], 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop')}
                   alt={`${project.title} Screenshot ${activeImageIndex + 1}`}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover sm:object-contain bg-black/40"
+                  className="w-full h-full object-contain bg-black/70 transition-all duration-300"
                 />
 
                 {screenshots.length > 1 && (
@@ -242,7 +238,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     <button
                       type="button"
                       onClick={handlePrevImage}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-700 shadow-lg transition-transform active:scale-95 cursor-pointer"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/80 hover:bg-black text-white border border-zinc-700 shadow-xl transition-transform active:scale-95 cursor-pointer z-10"
                       aria-label="Previous screenshot"
                     >
                       <ChevronLeft className="w-5 h-5" />
@@ -250,7 +246,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     <button
                       type="button"
                       onClick={handleNextImage}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-700 shadow-lg transition-transform active:scale-95 cursor-pointer"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/80 hover:bg-black text-white border border-zinc-700 shadow-xl transition-transform active:scale-95 cursor-pointer z-10"
                       aria-label="Next screenshot"
                     >
                       <ChevronRight className="w-5 h-5" />
@@ -259,17 +255,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 )}
               </div>
 
-              {/* Thumbnail Selector (if multiple screenshots exist) */}
+              {/* Thumbnail Selector (for all screenshots without artificial limit) */}
               {screenshots.length > 1 && (
-                <div className="flex items-center gap-2.5 mt-3 overflow-x-auto pb-1">
+                <div className="flex items-center gap-2.5 mt-3.5 overflow-x-auto pb-2 scrollbar-thin">
                   {screenshots.map((imgUrl, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setActiveImageIndex(idx)}
-                      className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
+                      className={`relative w-20 h-14 sm:w-28 sm:h-18 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer bg-zinc-900 ${
                         activeImageIndex === idx
-                          ? 'border-cyan-400 shadow-md shadow-cyan-500/20 scale-105'
+                          ? 'border-cyan-400 shadow-md shadow-cyan-500/30 scale-105 ring-2 ring-cyan-400/20'
                           : 'border-zinc-800 opacity-60 hover:opacity-100 hover:border-zinc-600'
                       }`}
                     >
