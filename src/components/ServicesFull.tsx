@@ -30,9 +30,7 @@ interface ServiceCard {
   id: string;
   icon: React.ElementType;
   title: string;
-  badge: string;
   benefit: string;
-  priceHint: string;
   deliverables: string[];
   scopeDetails: {
     included: string[];
@@ -110,9 +108,7 @@ const serviceList: ServiceCard[] = [
     id: 'landing-page',
     icon: Layout,
     title: 'Responsive Website / Landing Page',
-    badge: 'Conversion-Focused',
     benefit: 'Fast-loading, high-converting pages optimized for all devices and screen sizes.',
-    priceHint: 'Project-based pricing',
     deliverables: [
       'Mobile-first responsive layout (Tailwind CSS)',
       'Modern animations & interactive UX elements',
@@ -137,9 +133,7 @@ const serviceList: ServiceCard[] = [
     id: 'react-spa',
     icon: Code2,
     title: 'React Website / SPA UI',
-    badge: 'Scalable Architecture',
     benefit: 'Modern, component-driven web applications built with clean and maintainable architecture.',
-    priceHint: 'Project-based pricing',
     deliverables: [
       'Reusable, modular React components',
       'Smooth state management & fast routing',
@@ -164,9 +158,7 @@ const serviceList: ServiceCard[] = [
     id: 'figma-to-react',
     icon: Figma,
     title: 'Figma to React',
-    badge: 'Pixel-Perfect',
     benefit: 'Exact 1:1 translation from your Figma or Adobe XD designs to production-ready code.',
-    priceHint: 'Project-based pricing',
     deliverables: [
       'Pixel-perfect typography, spacing & design tokens',
       'Interactive hover, focus & active states',
@@ -190,9 +182,7 @@ const serviceList: ServiceCard[] = [
     id: 'ui-fixes',
     icon: Bug,
     title: 'UI Fixes & Frontend Bug Fixing',
-    badge: 'Fast Delivery',
     benefit: 'Quick resolution of CSS layout glitches, broken responsive views, and React state issues.',
-    priceHint: 'Project-based pricing',
     deliverables: [
       'Cross-browser compatibility & mobile layout fixes',
       'State bugs & infinite re-rendering fixes',
@@ -216,9 +206,7 @@ const serviceList: ServiceCard[] = [
     id: 'redesign',
     icon: Sparkles,
     title: 'Website Redesign / UI Refresh',
-    badge: 'Modern UI Refresh',
     benefit: 'Revitalize outdated web interfaces into sleek, contemporary user experiences.',
-    priceHint: 'Project-based pricing',
     deliverables: [
       'Modernized design system & typography hierarchy',
       'Dark/Light mode themes & polished micro-interactions',
@@ -242,9 +230,7 @@ const serviceList: ServiceCard[] = [
     id: 'performance-seo',
     icon: Gauge,
     title: 'Performance & SEO Basics',
-    badge: 'Performance-Ready',
     benefit: 'Speed up your website and rank better on search engines with solid technical foundations.',
-    priceHint: 'Project-based pricing',
     deliverables: [
       'Lighthouse-focused improvements (performance, SEO, accessibility)',
       'Image optimization & asset lazy-loading',
@@ -397,28 +383,20 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
                 className="group relative rounded-2xl bg-zinc-950/80 border border-zinc-800/80 p-7 hover:border-cyan-500/40 hover:bg-zinc-900/60 transition-all duration-300 flex flex-col justify-between hover:shadow-xl hover:shadow-cyan-950/20 h-full"
               >
                 <div>
-                  {/* Top Bar: Icon + Badge */}
-                  <div className="flex items-center justify-between gap-3 mb-5">
+                  {/* Top Bar: Clean Icon */}
+                  <div className="flex items-center mb-5">
                     <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-xs sm:text-sm font-mono font-semibold px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700/80 text-cyan-300">
-                      {service.badge}
-                    </span>
                   </div>
 
                   {/* Title & Benefit */}
                   <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 group-hover:text-cyan-300 transition-colors mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-zinc-300 mb-4 leading-relaxed font-normal">
+                  <p className="text-sm sm:text-base text-zinc-300 mb-5 leading-relaxed font-normal">
                     {service.benefit}
                   </p>
-
-                  {/* Subtle Pricing Hint */}
-                  <div className="inline-block text-xs font-mono text-cyan-400/90 bg-cyan-950/40 border border-cyan-800/40 px-2.5 py-1 rounded-md mb-5">
-                    {service.priceHint}
-                  </div>
 
                   {/* Deliverables Bullet List */}
                   <div className="pt-4 border-t border-zinc-800/80 space-y-2.5">
@@ -657,10 +635,7 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
                   <selectedService.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-semibold text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-800/40">
-                    {selectedService.badge}
-                  </span>
-                  <h3 className="text-xl font-bold text-white mt-1">
+                  <h3 className="text-xl font-bold text-white">
                     {selectedService.title}
                   </h3>
                 </div>
@@ -735,14 +710,11 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
             </div>
 
             {/* Modal Footer CTA */}
-            <div className="pt-4 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-3">
-              <span className="text-xs font-mono text-zinc-400">
-                {selectedService.priceHint}
-              </span>
+            <div className="pt-4 border-t border-zinc-800 flex items-center justify-end">
               <button
                 type="button"
                 onClick={() => scrollToContact(selectedService.title)}
-                className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-md shadow-cyan-500/20 cursor-pointer flex items-center gap-2"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-md shadow-cyan-500/20 cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>Request Quote for this Service</span>
                 <ArrowRight className="w-4 h-4" />
