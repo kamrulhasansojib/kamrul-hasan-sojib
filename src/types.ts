@@ -37,7 +37,7 @@ export interface ProfileData {
 export interface Project {
   id: string;
   title: string;
-  category: 'Full Stack' | 'Frontend' | 'Backend' | 'AI & ML' | 'AI / Machine Learning';
+  category: 'Full Stack' | 'Frontend' | 'Backend' | 'AI & ML' | 'AI / Machine Learning' | 'AI / Full Stack' | string;
   description: string;
   longDescription: string;
   problem?: string;

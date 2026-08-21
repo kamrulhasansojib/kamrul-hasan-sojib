@@ -108,6 +108,39 @@ export const defaultTechBadges: TechBadge[] = [
 
 export const sampleProjects: Project[] = [
   {
+    id: "grammarmate",
+    title: "GrammarMate - AI Grammar Correction Assistant",
+    category: "AI / Full Stack",
+    description:
+      "An AI-powered grammar correction platform that detects grammatical errors, provides corrections, and explains the mistakes in a user-friendly interface.",
+    problem:
+      "Learners and non-native English writers often struggle to detect subtle grammatical mistakes, understand why a sentence is incorrect, and find natural alternative phrasing without cumbersome manual proofreading.",
+    role: "Full Stack NLP & AI Model Integration",
+    keyFeatures: [
+      "AI-powered grammar error detection and correction using BERT and T5",
+      "Real-time grammar feedback with correction explanations and alternative phrasing",
+      "Flask REST API connecting NLP models with the interactive web frontend"
+    ],
+    longDescription:
+      "GrammarMate is an AI-powered grammar correction platform designed to help users identify and correct English grammatical errors. I developed the system with a web-based frontend and a Python-based backend, integrating NLP models for grammar error detection and correction.\n\nThe system takes user-provided English text from the frontend and sends it to the backend API. A BERT-based grammar error detection model identifies grammatical mistakes, while a T5-based model helps generate improved and corrected sentences. The system then provides the corrected sentence along with explanations of the detected grammatical errors and alternative phrasing suggestions.\n\nThe platform also includes an interactive chat-style interface where users can enter sentences and receive real-time grammar feedback. I implemented API communication between the frontend and backend, model inference, grammar evaluation, correction highlighting, and performance metrics. This project helped me gain practical experience in Natural Language Processing, Transformer-based models, BERT, T5, Flask API development, model evaluation, and integrating AI models into a full-stack web application.",
+    image:
+      "https://res.cloudinary.com/diaqtzh6q/image/upload/v1787275887/Screenshot_2026-08-17_020820.png",
+    screenshots: [
+      "https://res.cloudinary.com/diaqtzh6q/image/upload/v1787275887/Screenshot_2026-08-17_020820.png",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop"
+    ],
+    tags: ["Python", "BERT", "T5", "NLP", "Flask", "JavaScript"],
+    githubUrl: "https://github.com/kamrulhasansojib/GrammarMate/tree/main",
+    liveUrl: "#",
+    featured: true,
+    highlights: [
+      "AI-powered grammar error detection and correction using BERT and T5",
+      "Real-time grammar feedback with correction explanations and alternative phrasing",
+      "Flask REST API connecting NLP models with the interactive web frontend",
+    ],
+  },
+  {
     id: "ewaste-recycling",
     title: "E-Waste Management & Recycling Platform",
     category: "Full Stack",

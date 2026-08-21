@@ -253,45 +253,36 @@ export const ServicesPreview: React.FC<ServicesPreviewProps> = ({ onOpenContact 
             })}
           </div>
 
-          {/* Slider Pagination & View All Controls Bar: Left: View all, Right: Dots (Mobile & Desktop) */}
-          <div className="mt-6 sm:mt-8 flex items-center justify-between gap-3 border-t border-zinc-900 pt-5">
+          {/* Slider Pagination & View All Controls Bar: Only visible on mobile, hidden on tablet and desktop */}
+          <div className="mt-6 flex sm:hidden items-center justify-between gap-3 border-t border-zinc-900 pt-5">
             
             {/* Left side: View all button */}
             <div>
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl text-xs sm:text-sm font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95 group whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.25)] transition-all cursor-pointer active:scale-95 group whitespace-nowrap"
               >
-                <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-black shrink-0" />
-                <span className="sm:hidden">View all</span>
-                <span className="hidden sm:inline">View all services ({allServices.length})</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform shrink-0" />
+                <Layers className="w-3.5 h-3.5 text-black shrink-0" />
+                <span>View all</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform shrink-0" />
               </Link>
             </div>
 
-            {/* Right side: Dots indicator and slide count */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              {/* Card Indicator Text (Hidden on mobile, visible on desktop) */}
-              <div className="hidden sm:block text-xs font-mono text-zinc-500">
-                Service <span className="text-cyan-400 font-bold">{activeServiceIndex + 1}</span> of <span className="text-zinc-300">{allServices.length}</span>
-              </div>
-
-              {/* Interactive Dots */}
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                {allServices.map((service, index) => (
-                  <button
-                    key={service.id}
-                    type="button"
-                    onClick={() => scrollToIndex(index)}
-                    className={`h-2 sm:h-2.5 rounded-full transition-all cursor-pointer ${
-                      activeServiceIndex === index
-                        ? 'w-6 sm:w-8 bg-cyan-400 shadow-sm shadow-cyan-400/50'
-                        : 'w-2 sm:w-2.5 bg-zinc-800 hover:bg-zinc-700'
-                    }`}
-                    aria-label={`Go to service slide ${index + 1}`}
-                  />
-                ))}
-              </div>
+            {/* Right side: Dots indicator */}
+            <div className="flex items-center gap-1.5">
+              {allServices.map((service, index) => (
+                <button
+                  key={service.id}
+                  type="button"
+                  onClick={() => scrollToIndex(index)}
+                  className={`h-2 rounded-full transition-all cursor-pointer ${
+                    activeServiceIndex === index
+                      ? 'w-6 bg-cyan-400 shadow-sm shadow-cyan-400/50'
+                      : 'w-2 bg-zinc-800 hover:bg-zinc-700'
+                  }`}
+                  aria-label={`Go to service slide ${index + 1}`}
+                />
+              ))}
             </div>
 
           </div>
