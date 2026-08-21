@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from '../lib/router';
 import { 
   Layout, 
@@ -13,7 +13,6 @@ import {
   Search,
   Cpu,
   Check,
-  ChevronLeft,
   ChevronRight,
   ChevronDown,
   Clock,
@@ -29,227 +28,211 @@ interface ServicesFullProps {
 
 interface ServiceCard {
   id: string;
-  icon: React.ElementType;
   title: string;
   benefit: string;
+  icon: any;
   deliverables: string[];
   scopeDetails: {
-    included: string[];
     timeline: string;
     revisions: string;
+    included: string[];
     notIncluded: string[];
   };
 }
 
-interface FaqItem {
-  id: string;
-  question: string;
-  answer: string;
-  bullets?: string[];
-  extra?: string;
-}
-
-const faqList: FaqItem[] = [
+const serviceList: ServiceCard[] = [
   {
-    id: 'faq-1',
-    question: '1) What do you need from me to get started?',
-    answer: 'A short brief is enough. Ideally, share your goals, references/examples you like, brand assets (logo, colors), and any design file (Figma) or existing website link. If you don’t have a design, I can start from a clean UI direction and iterate with you.'
-  },
-  {
-    id: 'faq-2',
-    question: '2) How does pricing and payment work?',
-    answer: 'I offer project-based pricing for well-defined scopes and hourly pricing for ongoing work/bug fixes. For fixed-price projects, I usually work with milestones (e.g., 30–50% upfront, rest on delivery or split by phases).'
-  },
-  {
-    id: 'faq-3',
-    question: '3) What’s the typical timeline?',
-    answer: 'Timelines depend on scope, but here are common ranges:',
-    bullets: [
-      'Landing page: 2–4 business days',
-      'Figma to React: 2–5 business days',
-      'React UI (multi-page): 4–10 business days',
-      'Bug fixes: 24–48 hours for standard issues'
+    id: 'react-dev',
+    title: 'React / Next.js Web Apps',
+    benefit: 'Modular, typed, and scalable web applications built for speed and maintainability.',
+    icon: Code2,
+    deliverables: [
+      'Clean TypeScript component architecture',
+      'Context / Zustand state management',
+      'Tailwind CSS styling & responsive layouts',
+      'API & webhook integration with error states'
     ],
-    extra: 'I’ll confirm an exact timeline after reviewing your requirements.'
+    scopeDetails: {
+      timeline: '2–4 weeks (scope-dependent)',
+      revisions: '2 rounds of structured revisions included',
+      included: [
+        'Component structure using React & TypeScript',
+        'State management & asynchronous data fetching',
+        'Mobile, tablet, and desktop responsive QA',
+        'Performance optimization & Lighthouse audit > 90'
+      ],
+      notIncluded: [
+        'Complex custom backend architecture from scratch (available as separate scope)',
+        'Copywriting and original branding asset creation'
+      ]
+    }
   },
   {
-    id: 'faq-4',
-    question: '4) How many revisions are included?',
-    answer: 'Most projects include 2 revision rounds (small UI adjustments, spacing, copy tweaks). Larger changes or new features can be added as a new milestone.'
+    id: 'figma-to-code',
+    title: 'Figma to Pixel-Perfect Code',
+    benefit: 'Exact translation from design files to live interactive interfaces with zero fidelity loss.',
+    icon: Figma,
+    deliverables: [
+      '100% fidelity to spacing, typography & tokens',
+      'Responsive breakpoints across all mobile devices',
+      'Smooth micro-interactions & hover states',
+      'Semantic, accessible HTML5 structure'
+    ],
+    scopeDetails: {
+      timeline: '1–2 weeks per set of core screens',
+      revisions: 'Pixel-perfect sign-off guarantee included',
+      included: [
+        'Exact Figma design token matching',
+        'Custom icon and vector handling',
+        'Interactive state transitions and dropdowns',
+        'Accessibility compliance check (WCAG 2.1 AA)'
+      ],
+      notIncluded: [
+        'Designing original UI screens from scratch in Figma',
+        'Backend server setup'
+      ]
+    }
   },
   {
-    id: 'faq-5',
-    question: '5) Do I get the source code?',
-    answer: 'Yes. You’ll receive the full source code (GitHub repo or zip) and clear handoff notes. If needed, I can also provide simple setup instructions so your team can run and maintain the project.'
+    id: 'landing-pages',
+    title: 'High-Converting Landing Pages',
+    benefit: 'Speed-optimized landing pages that turn visitors into users, subscribers, or buyers.',
+    icon: Layout,
+    deliverables: [
+      'Sub-second load times & Core Web Vitals optimization',
+      'Clear hierarchy and high-conversion CTA blocks',
+      'Interactive hero elements & proof sections',
+      'SEO meta tags, OpenGraph & analytics hooks'
+    ],
+    scopeDetails: {
+      timeline: '4–7 business days',
+      revisions: '2 rounds of conversion/copy tweaks included',
+      included: [
+        'High-converting layout execution',
+        'Fast static page generation with Vite or Next.js',
+        'Form validation and newsletter/CRM webhook hooks',
+        'Cross-browser and multi-device QA testing'
+      ],
+      notIncluded: [
+        'Paid ad campaign management',
+        'Custom video production'
+      ]
+    }
   },
   {
-    id: 'faq-6',
-    question: '6) Can you work with an existing website or codebase?',
-    answer: 'Yes. I can improve responsiveness, fix UI bugs, redesign sections, or refactor React components in existing projects. Just share the live link and (if possible) repository access.'
+    id: 'perf-optimization',
+    title: 'Performance & SEO Audits',
+    benefit: 'Boost Core Web Vitals, eliminate bundle bloat, and achieve 90+ Lighthouse scores.',
+    icon: Gauge,
+    deliverables: [
+      'Bundle size reduction & dynamic code splitting',
+      'Image optimization & modern WebP/AVIF formats',
+      'Lighthouse 90+ across Performance and SEO',
+      'Detailed audit report with actionable steps'
+    ],
+    scopeDetails: {
+      timeline: '3–5 business days',
+      revisions: '1 verification re-audit after deployment',
+      included: [
+        'Full performance audit & Core Web Vitals analysis',
+        'Direct codebase optimizations & refactoring',
+        'Script loading priority tuning & caching recommendations',
+        'Before & after performance benchmark reports'
+      ],
+      notIncluded: [
+        'Third-party hosting/CDN migration costs',
+        'Database query tuning (unless frontend-related)'
+      ]
+    }
   },
   {
-    id: 'faq-7',
-    question: '7) Do you handle deployment and hosting?',
-    answer: 'I can deploy frontend projects to Vercel/Netlify and help connect your domain. Hosting/domain costs are paid by the client. If you already have hosting, I can provide a smooth deployment handoff.'
+    id: 'bug-fixes',
+    title: 'Frontend Bug Fixes & Refactoring',
+    benefit: 'Rapid diagnosis and resolution of UI defects, styling glitches, and broken states.',
+    icon: Bug,
+    deliverables: [
+      'Cross-browser and viewport layout fix verification',
+      'State-lifecycle bug resolutions & memory leak cleanup',
+      'Legacy code refactoring into modern React hooks',
+      'Documented fixes with unit/integration validation'
+    ],
+    scopeDetails: {
+      timeline: '1–3 business days for critical bugs',
+      revisions: 'Fix validation guarantee included',
+      included: [
+        'Isolation and reproduction of reported bugs',
+        'Clean, non-breaking patch implementation',
+        'Testing across affected browsers/devices',
+        'Code review comments explaining the resolution'
+      ],
+      notIncluded: [
+        'Complete platform re-architecture under a bug-fix scope'
+      ]
+    }
   },
   {
-    id: 'faq-8',
-    question: '8) Can you integrate APIs or help with backend tasks?',
-    answer: 'Yes. I’m frontend-first, but I’m backend-aware and can integrate REST APIs, handle authentication flows, and support small Node/Express/database tasks when needed. For larger backend systems, I’m happy to collaborate with your backend developer/team.'
-  },
-  {
-    id: 'faq-9',
-    question: '(Optional extra) Do you offer ongoing support?',
-    answer: 'Yes. I can provide post-delivery support for bug fixes and small adjustments. If you need ongoing improvements, we can set up a monthly retainer or hourly plan.'
+    id: 'api-integration',
+    title: 'API & Backend Integration',
+    benefit: 'Seamless bridging between frontend UI and REST/GraphQL APIs or Firebase backend services.',
+    icon: Cpu,
+    deliverables: [
+      'REST & GraphQL endpoint consumption with types',
+      'Firebase Auth, Firestore, and Storage setups',
+      'Robust loading, error, empty, and retry states',
+      'Optimistic UI updates for snappy user experience'
+    ],
+    scopeDetails: {
+      timeline: '1–3 weeks (scope-dependent)',
+      revisions: 'Endpoint schema synchronization updates',
+      included: [
+        'TanStack Query / SWR / Axios integration with TypeScript types',
+        'JWT or Firebase auth state persistence',
+        'Error boundary handling and toast feedback',
+        'Mock data fixtures for parallel development'
+      ],
+      notIncluded: [
+        'Building full enterprise microservices from scratch'
+      ]
+    }
   }
 ];
 
-const serviceList: ServiceCard[] = [
+const faqList = [
   {
-    id: 'landing-page',
-    icon: Layout,
-    title: 'Responsive Website / Landing Page',
-    benefit: 'Fast-loading, high-converting pages optimized for all devices and screen sizes.',
-    deliverables: [
-      'Mobile-first responsive layout (Tailwind CSS)',
-      'Modern animations & interactive UX elements',
-      'Clean markup structured for high conversions'
-    ],
-    scopeDetails: {
-      included: [
-        'Complete mobile, tablet & desktop responsiveness',
-        'Custom hero, feature highlights, and conversion CTA blocks',
-        'Cross-browser testing (Chrome, Safari, Firefox, Edge)',
-        'Speed & asset optimization'
-      ],
-      timeline: '2–4 business days',
-      revisions: '2 rounds of design & layout revisions included',
-      notIncluded: [
-        'Domain and web hosting subscription costs',
-        'Copywriting & brand asset creation (client-provided)'
-      ]
-    }
+    id: 'faq-1',
+    question: 'How do we get started on a project?',
+    answer: 'Simply click "Request a Quote" or fill out the contact form with your project overview, timeline, and Figma link or requirements. I will review everything and get back to you within 24 hours with questions, timeline estimates, and next steps.'
   },
   {
-    id: 'react-spa',
-    icon: Code2,
-    title: 'React Website / SPA UI',
-    benefit: 'Modern, component-driven web applications built with clean and maintainable architecture.',
-    deliverables: [
-      'Reusable, modular React components',
-      'Smooth state management & fast routing',
-      'Clean REST API integration & real-time UI states'
-    ],
-    scopeDetails: {
-      included: [
-        'Single Page Application (SPA) frontend architecture',
-        'REST API endpoints consumption and error handling states',
-        'Dynamic modals, forms with client-side validation',
-        'Organized code structure ready for scale'
-      ],
-      timeline: '4–8 business days (depending on scope)',
-      revisions: '2 rounds of milestone reviews & refinements',
-      notIncluded: [
-        'Large-scale enterprise backend infrastructure setup',
-        'Paid 3rd party API subscriptions'
-      ]
-    }
+    id: 'faq-2',
+    question: 'How does payment and milestone tracking work?',
+    answer: 'For fixed-price projects, work is typically split into 2 or 3 milestones (e.g., 50% upfront deposit, 50% upon final sign-off and deployment). For ongoing contract or hourly work, invoices are processed weekly or bi-weekly with transparent time logs.'
   },
   {
-    id: 'figma-to-react',
-    icon: Figma,
-    title: 'Figma to React',
-    benefit: 'Exact 1:1 translation from your Figma or Adobe XD designs to production-ready code.',
-    deliverables: [
-      'Pixel-perfect typography, spacing & design tokens',
-      'Interactive hover, focus & active states',
-      'Reusable, modular component structure'
-    ],
-    scopeDetails: {
-      included: [
-        'Faithful visual translation of Figma frames to clean JSX',
-        'Tailwind CSS design token mapping (colors, fonts, radii)',
-        'Responsive adaptation for mobile & tablet breakpoints',
-        'Clean SVGs & optimized icon assets'
-      ],
-      timeline: '2–5 business days',
-      revisions: '2 rounds of pixel-alignment revisions',
-      notIncluded: [
-        'Creating original Figma designs from scratch (UI implementation only)'
-      ]
-    }
+    id: 'faq-3',
+    question: 'Can you work with our existing codebase or backend team?',
+    answer: 'Yes! I have extensive experience integrating with existing Git repositories, following team code styles, and coordinating directly with backend developers on REST/GraphQL API contracts.',
+    bullets: [
+      'Clear Git branching & clean pull request descriptions',
+      'Active communication via Slack, Discord, or GitHub issues',
+      'Proactive input on API response structures & state management'
+    ]
   },
   {
-    id: 'ui-fixes',
-    icon: Bug,
-    title: 'UI Fixes & Frontend Bug Fixing',
-    benefit: 'Quick resolution of CSS layout glitches, broken responsive views, and React state issues.',
-    deliverables: [
-      'Cross-browser compatibility & mobile layout fixes',
-      'State bugs & infinite re-rendering fixes',
-      'Broken layout, overflow & z-index patches'
-    ],
-    scopeDetails: {
-      included: [
-        'Debugging and fixing identified frontend errors/glitches',
-        'Resolving CSS overflow, flex/grid alignment & mobile cutoff bugs',
-        'React hook lifecycle and state synchronization fixes',
-        'Clean git commit / pull request with concise summary'
-      ],
-      timeline: '24–48 hours for standard fixes',
-      revisions: 'Verification test & 1 follow-up check included',
-      notIncluded: [
-        'Full application re-architecting (separate project scope)'
-      ]
-    }
+    id: 'faq-4',
+    question: 'What is included in post-delivery support?',
+    answer: 'Every completed project includes 14 days of complimentary post-delivery bug fixing and deployment support to guarantee everything runs smoothly in your production environment.'
   },
   {
-    id: 'redesign',
-    icon: Sparkles,
-    title: 'Website Redesign / UI Refresh',
-    benefit: 'Revitalize outdated web interfaces into sleek, contemporary user experiences.',
-    deliverables: [
-      'Modernized design system & typography hierarchy',
-      'Dark/Light mode themes & polished micro-interactions',
-      'Improved visual hierarchy & user flow'
-    ],
-    scopeDetails: {
-      included: [
-        'Comprehensive UI overhaul of existing web pages',
-        'Refined typography, color schemes & card layouts',
-        'Micro-interactions and subtle entering transitions',
-        'Preserving existing business logic while enhancing visuals'
-      ],
-      timeline: '3–6 business days',
-      revisions: '2 rounds of visual style refinements',
-      notIncluded: [
-        'Complete database migration or backend rewrites'
-      ]
-    }
+    id: 'faq-5',
+    question: 'What timezone do you work in and how do you communicate?',
+    answer: 'I work in UTC+6 and have comfortable overlap with US, European, and Asia-Pacific timezones. I communicate primarily via asynchronous updates (Slack/Email/Loom) and scheduled Google Meet / Zoom syncs when needed.'
   },
   {
-    id: 'performance-seo',
-    icon: Gauge,
-    title: 'Performance & SEO Basics',
-    benefit: 'Speed up your website and rank better on search engines with solid technical foundations.',
-    deliverables: [
-      'Lighthouse-focused improvements (performance, SEO, accessibility)',
-      'Image optimization & asset lazy-loading',
-      'Semantic HTML structure & OpenGraph meta tags'
-    ],
-    scopeDetails: {
-      included: [
-        'Audit & remediation of render-blocking resources',
-        'Image compression, modern formats (WebP) & lazy-loading',
-        'Semantic HTML tags (H1-H6, ARIA attributes, alt texts)',
-        'OpenGraph social cards and SEO meta tags setup'
-      ],
-      timeline: '2–4 business days',
-      revisions: 'Pre/post Lighthouse comparative report & 1 revision round',
-      notIncluded: [
-        'Paid backlink campaigns or ongoing monthly SEO copywriting'
-      ]
-    }
+    id: 'faq-6',
+    question: 'Do you offer ongoing retainer or maintenance contracts?',
+    answer: 'Yes, after delivering the initial project, I offer monthly retainer packages for continuous feature development, performance monitoring, and rapid bug fixes.',
+    extra: 'Retainer slots are limited to ensure high responsiveness for existing partners.'
   }
 ];
 
@@ -258,13 +241,13 @@ const processSteps = [
     step: '01',
     name: 'Discovery & Scope',
     icon: Search,
-    desc: 'Reviewing your Figma designs, technical requirements, and defining milestone delivery.'
+    desc: 'Review Figma designs, user flows, and tech requirements to define a clear milestone plan.'
   },
   {
     step: '02',
-    name: 'Build & Iterate',
-    icon: Cpu,
-    desc: 'Developing clean, type-safe React/Tailwind code with regular progress updates.'
+    name: 'Iterative Development',
+    icon: Code2,
+    desc: 'Build modular, typed components with regular live staging previews for feedback.'
   },
   {
     step: '03',
@@ -290,41 +273,6 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
     setOpenFaqId(prev => (prev === id ? null : id));
   };
 
-  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const handleScroll = () => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
-    const newIndex = Math.round(container.scrollLeft / cardWidth);
-    if (newIndex !== activeServiceIndex && newIndex >= 0 && newIndex < serviceList.length) {
-      setActiveServiceIndex(newIndex);
-    }
-  };
-
-  const slideLeft = () => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
-    container.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-  };
-
-  const slideRight = () => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
-    container.scrollBy({ left: cardWidth, behavior: 'smooth' });
-  };
-
-  const scrollToIndex = (index: number) => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
-    container.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-    setActiveServiceIndex(index);
-  };
-
   // Close modal on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -348,6 +296,16 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
     }
   };
 
+  const scrollToProjects = () => {
+    if (selectedService) setSelectedService(null);
+    const projectsElem = document.getElementById('projects');
+    if (projectsElem) {
+      projectsElem.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/#projects');
+    }
+  };
+
   return (
     <section 
       id="services-full" 
@@ -359,172 +317,103 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Heading & Subheading + Desktop Arrows */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
-          <div className="text-left max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs sm:text-sm font-mono font-medium mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Available for Freelance</span>
-            </div>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
-              Frontend Development <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Services</span>
-            </h1>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
-              High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients and product teams.
-            </p>
+        {/* Section Heading & Subheading */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs sm:text-sm font-mono font-medium mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Available for Freelance</span>
           </div>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+            Frontend Development <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Services</span>
+          </h1>
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal">
+            High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients and product teams.
+          </p>
 
-          {/* Navigation Arrows for Slider */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0 self-end">
-            <button
-              type="button"
-              onClick={slideLeft}
-              disabled={activeServiceIndex === 0}
-              className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
-                activeServiceIndex === 0
-                  ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
-                  : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
-              }`}
-              aria-label="Previous Service"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
+          {/* Primary Top CTA Row with Trust line */}
+          <div className="mt-8 flex flex-col items-center justify-center gap-3">
+            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
+              <button
+                onClick={() => scrollToContact()}
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
+              >
+                <span>Request a Quote</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
+              </button>
+              <button
+                onClick={scrollToProjects}
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
+              >
+                View Projects
+              </button>
+            </div>
 
-            <button
-              type="button"
-              onClick={slideRight}
-              disabled={activeServiceIndex >= serviceList.length - 1}
-              className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
-                activeServiceIndex >= serviceList.length - 1
-                  ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
-                  : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
-              }`}
-              aria-label="Next Service"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            {/* Quick response guarantee */}
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 mt-1 font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <Clock className="w-3.5 h-3.5 text-zinc-400" />
+              <span>Typical response time: within 24 hours.</span>
+            </div>
           </div>
         </div>
 
-        {/* 6 Service Cards Slider Track (Swipeable on mobile/tablet like Featured Projects) */}
-        <div className="relative group/track mb-16">
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none py-3 px-1 scroll-smooth"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {serviceList.map((service) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={service.id}
-                  className="snap-start shrink-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] group relative rounded-2xl bg-zinc-950/80 border border-zinc-800/80 p-7 hover:border-cyan-500/40 hover:bg-zinc-900/60 transition-all duration-300 flex flex-col justify-between hover:shadow-xl hover:shadow-cyan-950/20 min-h-[440px]"
-                >
-                  <div>
-                    {/* Top Bar: Clean Icon */}
-                    <div className="flex items-center mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
-                        <Icon className="w-6 h-6" />
-                      </div>
-                    </div>
-
-                    {/* Title & Benefit */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 group-hover:text-cyan-300 transition-colors mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-zinc-300 mb-5 leading-relaxed font-normal">
-                      {service.benefit}
-                    </p>
-
-                    {/* Deliverables Bullet List */}
-                    <div className="pt-4 border-t border-zinc-800/80 space-y-2.5">
-                      <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
-                        Key Deliverables
-                      </span>
-                      {service.deliverables.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5 text-sm sm:text-base text-zinc-200">
-                          <Check className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
+        {/* 6 Service Cards Grid (Equal Heights with Flex-Col) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 items-stretch">
+          {serviceList.map((service) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={service.id}
+                className="group relative rounded-2xl bg-zinc-950/80 border border-zinc-800/80 p-7 hover:border-cyan-500/40 hover:bg-zinc-900/60 transition-all duration-300 flex flex-col justify-between hover:shadow-xl hover:shadow-cyan-950/20 h-full"
+              >
+                <div>
+                  {/* Top Bar: Clean Icon */}
+                  <div className="flex items-center mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
+                      <Icon className="w-6 h-6" />
                     </div>
                   </div>
 
-                  {/* Interactive Scope Details Trigger */}
-                  <div className="mt-7 pt-4 border-t border-zinc-800/60 flex items-center justify-between">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedService(service)}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group-hover:underline"
-                    >
-                      <span>See scope details</span>
-                      <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
+                  {/* Title & Benefit */}
+                  <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 group-hover:text-cyan-300 transition-colors mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-zinc-300 mb-5 leading-relaxed font-normal">
+                    {service.benefit}
+                  </p>
 
-                    <span className="text-[11px] font-mono text-zinc-400">
-                      {service.scopeDetails.timeline}
+                  {/* Deliverables Bullet List */}
+                  <div className="pt-4 border-t border-zinc-800/80 space-y-2.5">
+                    <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
+                      Key Deliverables
                     </span>
+                    {service.deliverables.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 text-sm sm:text-base text-zinc-200">
+                        <Check className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Slider Pagination Controls Bar (Interactive Dots on mobile & desktop) */}
-          <div className="mt-6 flex items-center justify-between gap-3 border-t border-zinc-900 pt-4">
-            <div className="text-xs font-mono text-zinc-500">
-              Service <span className="text-cyan-400 font-bold">{activeServiceIndex + 1}</span> of <span className="text-zinc-300">{serviceList.length}</span>
-            </div>
+                {/* Interactive Scope Details Trigger */}
+                <div className="mt-7 pt-4 border-t border-zinc-800/60 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedService(service)}
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group-hover:underline"
+                  >
+                    <span>See scope details</span>
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </button>
 
-            {/* Interactive Dots */}
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              {serviceList.map((service, index) => (
-                <button
-                  key={service.id}
-                  type="button"
-                  onClick={() => scrollToIndex(index)}
-                  className={`h-2 sm:h-2.5 rounded-full transition-all cursor-pointer ${
-                    activeServiceIndex === index
-                      ? 'w-6 sm:w-8 bg-cyan-400 shadow-sm shadow-cyan-400/50'
-                      : 'w-2 sm:w-2.5 bg-zinc-800 hover:bg-zinc-700'
-                  }`}
-                  aria-label={`Go to service slide ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* Mobile Navigation Arrows */}
-            <div className="flex lg:hidden items-center gap-1.5 shrink-0">
-              <button
-                type="button"
-                onClick={slideLeft}
-                disabled={activeServiceIndex === 0}
-                className={`p-2 rounded-xl border transition-all cursor-pointer ${
-                  activeServiceIndex === 0
-                    ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
-                    : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
-                }`}
-                aria-label="Previous Service"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-
-              <button
-                type="button"
-                onClick={slideRight}
-                disabled={activeServiceIndex >= serviceList.length - 1}
-                className={`p-2 rounded-xl border transition-all cursor-pointer ${
-                  activeServiceIndex >= serviceList.length - 1
-                    ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
-                    : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
-                }`}
-                aria-label="Next Service"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+                  <span className="text-[11px] font-mono text-zinc-400">
+                    {service.scopeDetails.timeline}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Value Add Row: "What You Get" + "Backend-Friendly Advantage" */}
@@ -606,31 +495,8 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
           </div>
         </div>
 
-        {/* CTA Banner Section (Moved ABOVE FAQ) */}
-        <div className="services-cta-banner text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-6 sm:p-12 relative overflow-hidden mb-16">
-          <div className="max-w-2xl mx-auto">
-            <h3 className="services-cta-title text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Have a project in mind or need a frontend specialist?
-            </h3>
-            <p className="services-cta-subtitle mt-3 text-xs sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
-              Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
-            </p>
-            
-            {/* Contact CTA */}
-            <div className="flex justify-center max-w-xs mx-auto w-full">
-              <button
-                onClick={() => scrollToContact()}
-                className="w-full px-7 py-3.5 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-2"
-              >
-                <span>Get in Touch</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ Section (Now below the CTA Banner) */}
-        <div id="services-faq" className="mb-8">
+        {/* FAQ Section */}
+        <div id="services-faq" className="mb-16">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono font-medium mb-3">
               <HelpCircle className="w-3.5 h-3.5" />
@@ -698,6 +564,42 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Bottom CTA Area */}
+        <div className="services-cta-banner text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-6 sm:p-12 relative overflow-hidden">
+          <div className="max-w-2xl mx-auto">
+            <h3 className="services-cta-title text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Have a project in mind or need a frontend specialist?
+            </h3>
+            <p className="services-cta-subtitle mt-3 text-xs sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
+              Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
+            </p>
+            
+            {/* Bottom Primary CTAs */}
+            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
+              <button
+                onClick={() => scrollToContact()}
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
+              >
+                <span>Request a Quote</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
+              </button>
+              <button
+                onClick={scrollToProjects}
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
+              >
+                View Projects
+              </button>
+            </div>
+
+            {/* Response time */}
+            <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-zinc-400 mt-4 font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <Clock className="w-3.5 h-3.5 text-zinc-400" />
+              <span>Typical response time: within 24 hours.</span>
+            </div>
           </div>
         </div>
 
