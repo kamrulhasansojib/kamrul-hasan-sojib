@@ -72,8 +72,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </p>
           </div>
 
-          {/* Slider Navigation Arrows */}
-          <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+          {/* Slider Navigation Arrows (Hidden on mobile & tablet) */}
+          <div className="hidden lg:flex items-center gap-2 shrink-0 self-end">
             <button
               type="button"
               onClick={slideLeft}
@@ -199,46 +199,50 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             ))}
           </div>
 
-          {/* Slider Pagination Controls & Status */}
-          {projects.length > 1 && (
-            <div className="mt-8 flex items-center justify-between border-t border-zinc-900 pt-4">
-              
-              {/* Card Indicator Text */}
-              <div className="text-xs font-mono text-zinc-500">
-                Project <span className="text-cyan-400 font-bold">{activeProjectIndex + 1}</span> of <span className="text-zinc-300">{projects.length}</span>
-              </div>
-
-              {/* Interactive Dots */}
-              <div className="flex items-center gap-2">
-                {projects.map((project, index) => (
-                  <button
-                    key={project.id}
-                    type="button"
-                    onClick={() => scrollToIndex(index)}
-                    className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                      activeProjectIndex === index
-                        ? 'w-8 bg-cyan-400 shadow-sm shadow-cyan-400/50'
-                        : 'w-2.5 bg-zinc-800 hover:bg-zinc-700'
-                    }`}
-                    aria-label={`Go to project slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-
+          {/* Slider Pagination & View All Projects Controls Bar (Single row on mobile & desktop) */}
+          <div className="mt-8 flex items-center justify-between gap-3 border-t border-zinc-900 pt-5">
+            
+            {/* Left side: View all CTA Button */}
+            <div>
+              <Link
+                to="/projects"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl text-xs sm:text-sm font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95 group whitespace-nowrap"
+              >
+                <span className="sm:hidden">View all</span>
+                <span className="hidden sm:inline">View all projects</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform shrink-0" />
+              </Link>
             </div>
-          )}
 
-        </div>
+            {/* Right side: Project status (desktop only) + Interactive Dots (mobile & desktop) */}
+            {projects.length > 1 && (
+              <div className="flex items-center gap-3 sm:gap-4">
+                {/* Card Indicator Text (Hidden on mobile, visible on desktop) */}
+                <div className="hidden sm:block text-xs font-mono text-zinc-500">
+                  Project <span className="text-cyan-400 font-bold">{activeProjectIndex + 1}</span> of <span className="text-zinc-300">{projects.length}</span>
+                </div>
 
-        {/* View all projects CTA Button */}
-        <div className="mt-12 text-center">
-          <Link
-            to="/projects"
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 shadow-[0_0_25px_rgba(56,189,248,0.25)] hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] transition-all cursor-pointer active:scale-95 group"
-          >
-            <span>View all projects</span>
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform" />
-          </Link>
+                {/* Interactive Dots */}
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  {projects.map((project, index) => (
+                    <button
+                      key={project.id}
+                      type="button"
+                      onClick={() => scrollToIndex(index)}
+                      className={`h-2 sm:h-2.5 rounded-full transition-all cursor-pointer ${
+                        activeProjectIndex === index
+                          ? 'w-6 sm:w-8 bg-cyan-400 shadow-sm shadow-cyan-400/50'
+                          : 'w-2 sm:w-2.5 bg-zinc-800 hover:bg-zinc-700'
+                      }`}
+                      aria-label={`Go to project slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </div>
+
         </div>
 
       </div>

@@ -339,6 +339,113 @@ html.light .modal-close-btn svg {
 }
 
 /* Project Modal & Projects Page Light Mode Styling */
+html.light .projects-page-wrapper {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light .projects-breadcrumb-bar {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .projects-back-link {
+  color: #475569 !important;
+}
+
+html.light .projects-back-link:hover {
+  color: #0284c7 !important;
+}
+
+html.light .projects-header-badge {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+
+html.light .projects-main-heading {
+  color: #0f172a !important;
+}
+
+html.light .projects-main-subtext {
+  color: #334155 !important;
+}
+
+html.light .projects-filter-bar {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.02) !important;
+}
+
+html.light .projects-tab-inactive {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+html.light .projects-tab-inactive:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+html.light .projects-search-input {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light .projects-search-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light .project-grid-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.02) !important;
+}
+
+html.light .project-grid-card:hover {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 20px 35px -5px rgba(2, 132, 199, 0.12), 0 8px 10px -3px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .project-card-title {
+  color: #0f172a !important;
+}
+
+html.light .project-card-desc {
+  color: #334155 !important;
+}
+
+html.light .project-card-features {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .projects-empty-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .projects-reset-btn {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light .projects-cta-banner {
+  background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #f0f9ff 100%) !important;
+  border-color: #7dd3fc !important;
+  box-shadow: 0 16px 36px -8px rgba(2, 132, 199, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .projects-cta-title {
+  color: #0f172a !important;
+}
+
+html.light .projects-cta-subtitle {
+  color: #334155 !important;
+}
+
 html.light .project-modal-dialog {
   background-color: #ffffff !important;
   border-color: #cbd5e1 !important;
