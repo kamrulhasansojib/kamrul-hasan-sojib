@@ -28,14 +28,13 @@ export const calculateYearsOfExperience = (
 
 export const initialProfile: ProfileData = {
   name: "Kamrul Hasan Sojib",
-  role: "Full-Stack Software Engineer",
-  avatarUrl:
-    "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786307745/Picsart_26-08-09_01-15-42-718.jpg.jpg",
+  role: "React Frontend Developer (Backend-aware)",
+  avatarUrl: "https://res.cloudinary.com/diaqtzh6q/image/upload/v1786307745/Picsart_26-08-09_01-15-42-718.jpg.jpg",
   tagline:
-    "Crafting scalable web services, high-performance APIs, and polished user experiences.",
-  bio: "Hello! I'm Kamrul Hasan Sojib, a passionate Computer Science undergraduate. My fascination with logic and problem-solving led me to the world of software development, where I strive to create impactful solutions.",
+    "I build fast, responsive React websites for startups and small businesses.",
+  bio: "Pixel-perfect Figma-to-React, clean UI, and smooth API integration. I can also collaborate on REST APIs and handle small backend tasks.",
   availableForInternships: true,
-  internshipType: "Available for Internships",
+  internshipType: "Available for Freelance and Job Role",
   location: "Dhaka, Bangladesh (Open to Remote)",
   email: "kamrulhasansojib19@gmail.com",
   githubUrl: "https://github.com/kamrulhasansojib",
@@ -45,7 +44,7 @@ export const initialProfile: ProfileData = {
   resumeUrl: "/Kamrul-Hasan-Sojib-Resume.pdf",
   yearsExperience: calculateYearsOfExperience("2024-01-01"),
   projectsCompleted: "6+",
-  certificationsCount: "2+",
+  certificationsCount: "100%",
   codeCommits: "1.2k+",
 };
 
