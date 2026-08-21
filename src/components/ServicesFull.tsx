@@ -318,7 +318,7 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Heading & Subheading */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs sm:text-sm font-mono font-medium mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Available for Freelance</span>
@@ -329,32 +329,6 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
           <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal">
             High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients and product teams.
           </p>
-
-          {/* Primary Top CTA Row with Trust line */}
-          <div className="mt-8 flex flex-col items-center justify-center gap-3">
-            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
-              <button
-                onClick={() => scrollToContact()}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
-              >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
-              </button>
-              <button
-                onClick={scrollToProjects}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
-              >
-                View Projects
-              </button>
-            </div>
-
-            {/* Quick response guarantee */}
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 mt-1 font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <Clock className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Typical response time: within 24 hours.</span>
-            </div>
-          </div>
         </div>
 
         {/* 6 Service Cards Grid (Equal Heights with Flex-Col) */}
@@ -495,8 +469,44 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
           </div>
         </div>
 
+        {/* CTA Banner: Have a project in mind (Placed above FAQ) */}
+        <div className="services-cta-banner text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-6 sm:p-12 relative overflow-hidden mb-16">
+          <div className="max-w-2xl mx-auto">
+            <h3 className="services-cta-title text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Have a project in mind or need a frontend specialist?
+            </h3>
+            <p className="services-cta-subtitle mt-3 text-xs sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
+              Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
+            </p>
+            
+            {/* Primary CTAs */}
+            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
+              <button
+                onClick={() => scrollToContact()}
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
+              >
+                <span>Request a Quote</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
+              </button>
+              <button
+                onClick={scrollToProjects}
+                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
+              >
+                View Projects
+              </button>
+            </div>
+
+            {/* Response time */}
+            <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-zinc-400 mt-4 font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <Clock className="w-3.5 h-3.5 text-zinc-400" />
+              <span>Typical response time: within 24 hours.</span>
+            </div>
+          </div>
+        </div>
+
         {/* FAQ Section */}
-        <div id="services-faq" className="mb-16">
+        <div id="services-faq" className="mb-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono font-medium mb-3">
               <HelpCircle className="w-3.5 h-3.5" />
@@ -564,42 +574,6 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
                 </div>
               );
             })}
-          </div>
-        </div>
-
-        {/* Bottom CTA Area */}
-        <div className="services-cta-banner text-center bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl border border-cyan-500/30 p-6 sm:p-12 relative overflow-hidden">
-          <div className="max-w-2xl mx-auto">
-            <h3 className="services-cta-title text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Have a project in mind or need a frontend specialist?
-            </h3>
-            <p className="services-cta-subtitle mt-3 text-xs sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
-              Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
-            </p>
-            
-            {/* Bottom Primary CTAs */}
-            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
-              <button
-                onClick={() => scrollToContact()}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
-              >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
-              </button>
-              <button
-                onClick={scrollToProjects}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
-              >
-                View Projects
-              </button>
-            </div>
-
-            {/* Response time */}
-            <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-zinc-400 mt-4 font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <Clock className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Typical response time: within 24 hours.</span>
-            </div>
           </div>
         </div>
 
