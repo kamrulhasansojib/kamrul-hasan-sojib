@@ -72,7 +72,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               {/* Body Text Paragraphs */}
               <div className="space-y-5 text-zinc-300 text-base sm:text-lg leading-relaxed font-normal">
                 <p>
-                  Hello! I'm {name}, a passionate Computer Science undergraduate. My fascination with logic and problem-solving led me to the world of software development, where I strive to create impactful solutions.
+                  Hello! I'm {name}, a passionate Computer Science undergraduate and a React-focused frontend developer. I build modern, responsive, and user-friendly interfaces with clean, maintainable code and attention to detail.
                 </p>
 
                 <p>
