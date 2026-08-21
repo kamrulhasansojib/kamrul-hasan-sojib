@@ -151,11 +151,35 @@ export const TechStackSection: React.FC = () => {
             className="w-4 h-4 shrink-0 object-contain"
           />
         );
+      case 'AI/ML (CNN)':
       case 'AI & ML':
+      case 'CNN':
         return (
-          <span className="w-4 h-4 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shrink-0 shadow-sm">
-            <Sparkles className="w-2.5 h-2.5 text-white" />
+          <span className="w-4 h-4 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center shrink-0 shadow-sm">
+            <Brain className="w-2.5 h-2.5 text-white" />
           </span>
+        );
+      case 'TensorFlow':
+        return (
+          <img 
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" 
+            alt="TensorFlow" 
+            className="w-4 h-4 shrink-0 object-contain"
+          />
+        );
+      case 'Figma':
+        return (
+          <img 
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" 
+            alt="Figma" 
+            className="w-4 h-4 shrink-0 object-contain"
+          />
+        );
+      case 'Vercel':
+        return (
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 shrink-0 text-white">
+            <path d="M12 1L24 22H0L12 1Z" />
+          </svg>
         );
       case 'Git & GitHub':
       case 'Git':
@@ -211,8 +235,8 @@ export const TechStackSection: React.FC = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
             Technical <span className="text-cyan-400">Toolkit</span>
           </h2>
-          <p className="text-zinc-300 text-sm sm:text-base lg:text-lg mt-3 max-w-xl leading-relaxed font-normal">
-            A comprehensive set of tools and technologies I've mastered to bridge the gap between complex problems and elegant software solutions.
+          <p className="text-zinc-300 text-sm sm:text-base lg:text-lg mt-3 max-w-2xl leading-relaxed font-normal">
+            A comprehensive set of tools and technologies for development, AI/ML, and problem-solving.
           </p>
         </div>
 
@@ -252,8 +276,8 @@ export const TechStackSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Additional Skills & Soft Skills Strip */}
-        <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-[#0d0d0f] border border-zinc-800/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl relative overflow-hidden group hover:border-cyan-500/30 transition-colors">
+        {/* Additional Skills & Soft Skills Strip (Hidden on Mobile, Visible on md+) */}
+        <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-[#0d0d0f] border border-zinc-800/80 hidden md:flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl relative overflow-hidden group hover:border-cyan-500/30 transition-colors">
           <div className="flex items-center gap-3.5 shrink-0">
             <div className="w-11 h-11 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shadow-md shadow-cyan-950/50">
               <Sparkles className="w-5 h-5 text-cyan-400" />
@@ -268,9 +292,7 @@ export const TechStackSection: React.FC = () => {
 
           <div className="flex flex-wrap items-center gap-2.5">
             {[
-              { name: 'Leadership', icon: <Users className="w-3.5 h-3.5 text-purple-400" />, color: 'border-purple-500/40 text-purple-200 bg-purple-950/40 hover:bg-purple-900/50' },
-              { name: 'Microsoft Office (Word, Excel, PowerPoint)', icon: <FileText className="w-3.5 h-3.5 text-blue-400" />, color: 'border-blue-500/40 text-blue-200 bg-blue-950/40 hover:bg-blue-900/50' },
-              { name: 'Communication & Teamwork', icon: <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />, color: 'border-emerald-500/40 text-emerald-200 bg-emerald-950/40 hover:bg-emerald-900/50' },
+              { name: 'Leadership & Teamwork', icon: <Users className="w-3.5 h-3.5 text-purple-400" />, color: 'border-purple-500/40 text-purple-200 bg-purple-950/40 hover:bg-purple-900/50' },
               { name: 'Problem Solving', icon: <Brain className="w-3.5 h-3.5 text-cyan-400" />, color: 'border-cyan-500/40 text-cyan-200 bg-cyan-950/40 hover:bg-cyan-900/50' },
               { name: 'Time Management', icon: <Clock className="w-3.5 h-3.5 text-sky-400" />, color: 'border-sky-500/40 text-sky-200 bg-sky-950/40 hover:bg-sky-900/50' },
             ].map((skill, idx) => (

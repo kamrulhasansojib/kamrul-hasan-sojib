@@ -1,24 +1,13 @@
-import {
-  ProfileData,
-  Project,
-  SkillCategory,
-  ExperienceItem,
-  TechBadge,
-  Certification,
-  HighlightItem,
-} from "../types";
+import { ProfileData, Project, SkillCategory, ExperienceItem, TechBadge, Certification, HighlightItem } from '../types';
 
 // Helper function to calculate years of experience starting from Jan 2024
-export const calculateYearsOfExperience = (
-  startDateStr: string = "2024-01-01",
-): string => {
+export const calculateYearsOfExperience = (startDateStr: string = '2024-01-01'): string => {
   const startDate = new Date(startDateStr);
   const now = new Date();
   let years = now.getFullYear() - startDate.getFullYear();
   if (
     now.getMonth() < startDate.getMonth() ||
-    (now.getMonth() === startDate.getMonth() &&
-      now.getDate() < startDate.getDate())
+    (now.getMonth() === startDate.getMonth() && now.getDate() < startDate.getDate())
   ) {
     years--;
   }
@@ -114,30 +103,10 @@ export const defaultTechBadges: TechBadge[] = [
     animationClass: "",
     color: "text-blue-400",
     bgGlow: "shadow-blue-500/30",
-  },
+  }
 ];
 
 export const sampleProjects: Project[] = [
-  {
-    id: "grammarmate",
-    title: "GrammarMate - AI Grammar Correction Assistant",
-    category: "Full Stack",
-    description:
-      "An AI-powered grammar correction platform that detects grammatical errors, provides corrections, and explains the mistakes in a user-friendly interface.",
-    longDescription:
-      "GrammarMate is an AI-powered grammar correction platform designed to help users identify and correct English grammatical errors. I developed the system with a web-based frontend and a Python-based backend, integrating NLP models for grammar error detection and correction.\n\nThe system takes user-provided English text from the frontend and sends it to the backend API. A BERT-based grammar error detection model identifies grammatical mistakes, while a T5-based model helps generate improved and corrected sentences. The system then provides the corrected sentence along with explanations of the detected grammatical errors and alternative phrasing suggestions.\n\nThe platform also includes an interactive chat-style interface where users can enter sentences and receive real-time grammar feedback. I implemented API communication between the frontend and backend, model inference, grammar evaluation, correction highlighting, and performance metrics. This project helped me gain practical experience in Natural Language Processing, Transformer-based models, BERT, T5, Flask API development, model evaluation, and integrating AI models into a full-stack web application.",
-    image:
-      "https://res.cloudinary.com/diaqtzh6q/image/upload/v1787275887/Screenshot_2026-08-17_020820.png",
-    tags: ["Python", "BERT", "T5", "NLP", "Flask", "JavaScript"],
-    githubUrl: "https://github.com/kamrulhasansojib/GrammarMate/tree/main",
-    liveUrl: "#",
-    featured: true,
-    highlights: [
-      "AI-powered grammar error detection and correction using BERT and T5",
-      "Real-time grammar feedback with correction explanations and alternative phrasing",
-      "Flask REST API connecting NLP models with the interactive web frontend",
-    ],
-  },
   {
     id: "ewaste-recycling",
     title: "E-Waste Management & Recycling Platform",
@@ -226,16 +195,16 @@ export const skillCategories: SkillCategory[] = [
         description: "Data Analysis, AI/ML & Automation",
       },
       {
-        name: "JavaScript",
-        level: 95,
-        icon: "JS",
-        description: "ES6+, Async/Await & DOM Logic",
+        name: "AI/ML (CNN)",
+        level: 85,
+        icon: "AIML",
+        description: "Convolutional Neural Networks & Deep Learning",
       },
       {
-        name: "PHP",
-        level: 80,
-        icon: "PHP",
-        description: "Server-side Scripting & Web Backend",
+        name: "TensorFlow",
+        level: 84,
+        icon: "TensorFlow",
+        description: "Model Training & Neural Networks",
       },
     ],
   },
@@ -247,6 +216,12 @@ export const skillCategories: SkillCategory[] = [
         level: 95,
         icon: "React",
         description: "Component Architecture & Hooks",
+      },
+      {
+        name: "JavaScript",
+        level: 95,
+        icon: "JS",
+        description: "ES6+, Async/Await & Modern DOM Logic",
       },
       {
         name: "Tailwind CSS",
@@ -298,25 +273,25 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    category: "Tools & AI",
+    category: "Tools",
     skills: [
-      {
-        name: "Docker",
-        level: 85,
-        icon: "Docker",
-        description: "Containerization & Microservices",
-      },
-      {
-        name: "AI & ML",
-        level: 85,
-        icon: "AIML",
-        description: "Machine Learning & AI Integration",
-      },
       {
         name: "Git & GitHub",
         level: 95,
         icon: "Git",
         description: "Version Control & Collaboration",
+      },
+      {
+        name: "Figma",
+        level: 90,
+        icon: "Figma",
+        description: "UI/UX Design to Pixel-Perfect Code",
+      },
+      {
+        name: "Vercel",
+        level: 92,
+        icon: "Vercel",
+        description: "Frontend Deployment & CI/CD",
       },
       {
         name: "Postman",
@@ -329,6 +304,12 @@ export const skillCategories: SkillCategory[] = [
         level: 96,
         icon: "VSCode",
         description: "Modern IDE & Extension Ecosystem",
+      },
+      {
+        name: "Docker",
+        level: 85,
+        icon: "Docker",
+        description: "Containerization & Microservices",
       },
     ],
   },
@@ -349,13 +330,7 @@ export const educationItems = [
       "Dean's Honor List for outstanding academic performance across multiple semesters",
       "Active participant and problem solver in Intra and Inter-University Programming Contests",
     ],
-    skills: [
-      "Data Structures & Algorithms",
-      "Software Engineering",
-      "Database Systems",
-      "Computer Networks",
-      "OOP (C++)",
-    ],
+    skills: ["Data Structures & Algorithms", "Software Engineering", "Database Systems", "Computer Networks", "OOP (C++)"],
   },
   {
     id: "edu-2",

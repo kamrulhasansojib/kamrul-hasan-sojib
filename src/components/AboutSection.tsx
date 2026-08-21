@@ -80,7 +80,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 </p>
 
                 <p>
-                  Beyond web development, I am heavily invested in competitive programming and mastering complex algorithms using C and C++. I'm constantly learning new backend technologies to build more robust systems.
+                  Beyond web development, I work on AI/Deep Learning—especially NLP—and I enjoy problem solving through competitive programming, where I practice algorithms and write efficient solutions in C/C++.
                 </p>
               </div>
             </div>
