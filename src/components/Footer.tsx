@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from '../lib/router';
 import { motion } from 'motion/react';
 import { Terminal, ArrowUp, Github, Linkedin, Mail, Heart, Sparkles, MapPin, Code2 } from 'lucide-react';
 import { ProfileData } from '../types';

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from '../lib/router';
 import { ArrowLeft, Home as HomeIcon, Sparkles } from 'lucide-react';
 import { ServicesFull } from '../components/ServicesFull';
 
