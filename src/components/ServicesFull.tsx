@@ -312,16 +312,6 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
     }
   };
 
-  const scrollToProjects = () => {
-    if (selectedService) setSelectedService(null);
-    const projectsElem = document.getElementById('projects');
-    if (projectsElem) {
-      projectsElem.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#projects');
-    }
-  };
-
   return (
     <section 
       id="services-full" 
@@ -345,32 +335,6 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
           <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal">
             High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients and product teams.
           </p>
-
-          {/* Primary Top CTA Row with Trust line */}
-          <div className="mt-8 flex flex-col items-center justify-center gap-3">
-            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
-              <button
-                onClick={() => scrollToContact()}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap"
-              >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
-              </button>
-              <button
-                onClick={scrollToProjects}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
-              >
-                View Projects
-              </button>
-            </div>
-
-            {/* Quick response guarantee */}
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 mt-1 font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <Clock className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Typical response time: within 24 hours.</span>
-            </div>
-          </div>
         </div>
 
         {/* 6 Service Cards Grid (Equal Heights with Flex-Col) */}
@@ -593,26 +557,16 @@ export const ServicesFull: React.FC<ServicesFullProps> = ({ onOpenContact }) => 
               Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
             </p>
             
-            {/* Mobile 1-Row Responsive Buttons */}
-            <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto w-full">
+            {/* Bottom Contact CTA */}
+            <div className="flex justify-center max-w-xs mx-auto w-full">
               <button
                 onClick={() => scrollToContact()}
-                className="flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2.5 whitespace-nowrap"
+                className="w-full px-7 py-3.5 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-2"
               >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
-              </button>
-              <button
-                onClick={scrollToProjects}
-                className="cta-secondary-btn flex-1 sm:flex-initial px-3.5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer whitespace-nowrap"
-              >
-                View Projects
+                <span>Get in Touch</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               </button>
             </div>
-
-            <p className="services-cta-note mt-4 text-xs sm:text-sm text-zinc-400 font-mono">
-              Typical response time: within 24 hours.
-            </p>
           </div>
         </div>
 

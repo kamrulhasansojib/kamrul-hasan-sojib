@@ -238,14 +238,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContact 
     }
   };
 
-  const scrollToProjects = () => {
-    if (selectedService) setSelectedService(null);
-    const projectsElem = document.getElementById('projects');
-    if (projectsElem) {
-      projectsElem.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section 
       id="services" 
@@ -269,32 +261,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContact 
           <p className="mt-4 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal">
             High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients and product teams.
           </p>
-
-          {/* Primary Top CTA Row with Trust line */}
-          <div className="mt-8 flex flex-col items-center justify-center gap-3">
-            <div className="flex flex-wrap items-center justify-center gap-3.5">
-              <button
-                onClick={() => scrollToContact()}
-                className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center gap-2"
-              >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              <button
-                onClick={scrollToProjects}
-                className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer"
-              >
-                View Projects
-              </button>
-            </div>
-
-            {/* Quick response guarantee */}
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 mt-1 font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <Clock className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Typical response time: within 24 hours.</span>
-            </div>
-          </div>
         </div>
 
         {/* 6 Service Cards Grid (Equal Heights with Flex-Col) */}
@@ -444,24 +410,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContact 
             <p className="mt-3 text-sm sm:text-base lg:text-lg text-zinc-300 mb-6 font-normal">
               Let&apos;s discuss your scope, timeline, and how I can help bring your web product to life.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            {/* Bottom Contact CTA */}
+            <div className="flex justify-center max-w-xs mx-auto w-full">
               <button
                 onClick={() => scrollToContact()}
-                className="px-7 py-3.5 rounded-xl text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center gap-2.5"
+                className="w-full px-7 py-3.5 rounded-xl text-sm sm:text-base font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-95 flex items-center justify-center gap-2"
               >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button
-                onClick={scrollToProjects}
-                className="px-7 py-3.5 rounded-xl text-base font-semibold text-zinc-300 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-700/80 transition-all cursor-pointer"
-              >
-                View Projects
+                <span>Get in Touch</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               </button>
             </div>
-            <p className="mt-4 text-xs sm:text-sm text-zinc-400 font-mono">
-              Typical response time: within 24 hours.
-            </p>
           </div>
         </div>
 
