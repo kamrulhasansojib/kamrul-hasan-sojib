@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from '../lib/router';
 import { 
   Layout, 
@@ -9,7 +9,9 @@ import {
   ArrowRight, 
   Clock, 
   Database,
-  Layers
+  Layers,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface ServicesPreviewProps {
@@ -62,6 +64,40 @@ const topServices: PreviewServiceCard[] = [
 
 export const ServicesPreview: React.FC<ServicesPreviewProps> = ({ onOpenContact }) => {
   const navigate = useNavigate();
+  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
+    const newIndex = Math.round(container.scrollLeft / cardWidth);
+    if (newIndex !== activeServiceIndex && newIndex >= 0 && newIndex < topServices.length) {
+      setActiveServiceIndex(newIndex);
+    }
+  };
+
+  const slideLeft = () => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
+    container.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  };
+
+  const slideRight = () => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
+    container.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const cardWidth = container.firstElementChild ? (container.firstElementChild as HTMLElement).offsetWidth + 24 : 350;
+    container.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+    setActiveServiceIndex(index);
+  };
 
   const handleRequestQuote = () => {
     if (onOpenContact) {
@@ -87,61 +123,156 @@ export const ServicesPreview: React.FC<ServicesPreviewProps> = ({ onOpenContact 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-mono font-medium mb-4">
-            <Sparkles className="w-4 h-4" />
-            <span>Available for Freelance</span>
+        {/* Section Header + Controls */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div className="text-left max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-mono font-medium mb-3">
+              <Sparkles className="w-4 h-4" />
+              <span>Available for Freelance</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+              Frontend Development <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Services</span>
+            </h2>
+            <p className="mt-3 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
+              High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients.
+            </p>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Frontend Development <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">Services</span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal">
-            High-performance React interfaces, pixel-perfect Figma translations, and responsive websites crafted for international clients.
-          </p>
+
+          {/* Desktop slider nav */}
+          <div className="hidden lg:flex items-center gap-2 shrink-0 self-end">
+            <button
+              type="button"
+              onClick={slideLeft}
+              disabled={activeServiceIndex === 0}
+              className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
+                activeServiceIndex === 0
+                  ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
+                  : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
+              }`}
+              aria-label="Previous Service"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <button
+              type="button"
+              onClick={slideRight}
+              disabled={activeServiceIndex >= topServices.length - 1}
+              className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
+                activeServiceIndex >= topServices.length - 1
+                  ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
+                  : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
+              }`}
+              aria-label="Next Service"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
-        {/* Top 3 Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 items-stretch">
-          {topServices.map((service) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.id}
-                className="group relative rounded-2xl bg-zinc-950/80 border border-zinc-800/80 p-7 hover:border-cyan-500/40 hover:bg-zinc-900/60 transition-all duration-300 flex flex-col justify-between hover:shadow-xl hover:shadow-cyan-950/20 h-full"
-              >
-                <div>
-                  {/* Top: Clean Icon */}
-                  <div className="flex items-center mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
-                      <Icon className="w-6 h-6" />
+        {/* Top 3 Service Cards Slider Track (Swipeable like Featured Projects on mobile) */}
+        <div className="relative group/track mb-10">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none py-2 px-1 scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {topServices.map((service) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={service.id}
+                  className="snap-start shrink-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] group relative rounded-2xl bg-zinc-950/80 border border-zinc-800/80 p-7 hover:border-cyan-500/40 hover:bg-zinc-900/60 transition-all duration-300 flex flex-col justify-between hover:shadow-xl hover:shadow-cyan-950/20 min-h-[420px]"
+                >
+                  <div>
+                    {/* Top: Clean Icon */}
+                    <div className="flex items-center mb-5">
+                      <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                    </div>
+
+                    {/* Title & Benefit */}
+                    <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 group-hover:text-cyan-300 transition-colors mb-2">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-zinc-300 mb-5 leading-relaxed font-normal">
+                      {service.benefit}
+                    </p>
+
+                    {/* Deliverables Checklist */}
+                    <div className="pt-4 border-t border-zinc-800/80 space-y-2.5">
+                      <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
+                        Key Deliverables
+                      </span>
+                      {service.deliverables.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5 text-sm sm:text-base text-zinc-200">
+                          <Check className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
-
-                  {/* Title & Benefit */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 group-hover:text-cyan-300 transition-colors mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-zinc-300 mb-5 leading-relaxed font-normal">
-                    {service.benefit}
-                  </p>
-
-                  {/* Deliverables Checklist */}
-                  <div className="pt-4 border-t border-zinc-800/80 space-y-2.5">
-                    <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
-                      Key Deliverables
-                    </span>
-                    {service.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-sm sm:text-base text-zinc-200">
-                        <Check className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Slider Pagination Controls Bar */}
+          <div className="mt-5 flex items-center justify-between gap-3 border-t border-zinc-900 pt-4">
+            <div className="text-xs font-mono text-zinc-500">
+              Service <span className="text-cyan-400 font-bold">{activeServiceIndex + 1}</span> of <span className="text-zinc-300">{topServices.length}</span>
+            </div>
+
+            {/* Interactive Dots */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {topServices.map((service, index) => (
+                <button
+                  key={service.id}
+                  type="button"
+                  onClick={() => scrollToIndex(index)}
+                  className={`h-2 sm:h-2.5 rounded-full transition-all cursor-pointer ${
+                    activeServiceIndex === index
+                      ? 'w-6 sm:w-8 bg-cyan-400 shadow-sm shadow-cyan-400/50'
+                      : 'w-2 sm:w-2.5 bg-zinc-800 hover:bg-zinc-700'
+                  }`}
+                  aria-label={`Go to service slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Mobile Navigation Arrows */}
+            <div className="flex lg:hidden items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={slideLeft}
+                disabled={activeServiceIndex === 0}
+                className={`p-2 rounded-xl border transition-all cursor-pointer ${
+                  activeServiceIndex === 0
+                    ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
+                    : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
+                }`}
+                aria-label="Previous Service"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <button
+                type="button"
+                onClick={slideRight}
+                disabled={activeServiceIndex >= topServices.length - 1}
+                className={`p-2 rounded-xl border transition-all cursor-pointer ${
+                  activeServiceIndex >= topServices.length - 1
+                    ? 'bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed'
+                    : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:bg-zinc-800 shadow-md'
+                }`}
+                aria-label="Next Service"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Backend-Aware Bonus Note */}
