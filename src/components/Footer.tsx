@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Terminal, ArrowUp, Github, Linkedin, Mail, Heart, Sparkles, MapPin, Code2 } from 'lucide-react';
 import { ProfileData } from '../types';
@@ -9,6 +10,8 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ profile }) => {
   const [time, setTime] = useState<string>('');
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const updateTime = () => {
@@ -24,11 +27,37 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNavClick = (href: string) => {
+    if (href === '#') {
+      if (location.pathname !== '/') {
+        navigate('/');
+      } else {
+        scrollToTop();
+      }
+      return;
+    }
+
+    if (href === '/services') {
+      navigate('/services');
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate('/' + href);
+    } else {
+      const targetId = href.replace('#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const navLinks = [
     { name: 'Home', href: '#' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Services', href: '#services' },
+    { name: 'Services', href: '/services' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
     { name: 'Certifications', href: '#certifications' },
@@ -85,14 +114,15 @@ export const Footer: React.FC<FooterProps> = ({ profile }) => {
             </h4>
             <div className="grid grid-cols-2 gap-2 text-sm font-medium">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
-                  className="text-zinc-300 hover:text-cyan-400 transition-colors py-1 flex items-center gap-1 group"
+                  type="button"
+                  onClick={() => handleNavClick(link.href)}
+                  className="text-left text-zinc-300 hover:text-cyan-400 transition-colors py-1 flex items-center gap-1 group cursor-pointer"
                 >
                   <span className="text-zinc-500 group-hover:text-cyan-400 transition-colors">›</span>
                   <span>{link.name}</span>
-                </a>
+                </button>
               ))}
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Menu, 
   X, 
@@ -11,7 +12,8 @@ import {
   GraduationCap,
   Award,
   Sparkles,
-  Wrench
+  Wrench,
+  Layers
 } from 'lucide-react';
 import { ProfileData } from '../types';
 
@@ -35,6 +37,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   
   const dropdownRef = useRef<HTMLDivElement>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,9 +78,17 @@ export const Navbar: React.FC<NavbarProps> = ({
     setAboutDropdownOpen(false);
     setMobileMenuOpen(false);
     
-    // If hash changes, dispatch event so components like ExperienceSection react immediately
-    window.location.hash = hash;
-    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    if (location.pathname !== '/') {
+      navigate('/' + hash);
+    } else {
+      const targetId = hash.replace('#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      window.location.hash = hash;
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    }
   };
 
   return (
@@ -92,19 +105,31 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between">
           
           {/* Logo / Name Brand */}
-          <a href="#" className="flex items-center gap-2 group shrink-0">
+          <Link to="/" className="flex items-center gap-2 group shrink-0">
             <span className={`font-extrabold text-xl sm:text-2xl tracking-tight transition-colors font-mono whitespace-nowrap ${
               isDarkMode ? 'text-blue-400 group-hover:text-cyan-300' : 'text-blue-600 group-hover:text-cyan-600'
             }`}>
               &lt;Sojib /&gt;
             </span>
-          </a>
+          </Link>
 
           {/* Desktop / Large Screen Nav Items */}
           <nav className={`hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm font-semibold whitespace-nowrap ${
             isDarkMode ? 'text-zinc-200' : 'text-slate-800'
           }`}>
-            <a href="#" className="hover:text-cyan-400 transition-colors">Home</a>
+            <button 
+              type="button" 
+              onClick={() => {
+                if (location.pathname !== '/') {
+                  navigate('/');
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="hover:text-cyan-400 transition-colors cursor-pointer"
+            >
+              Home
+            </button>
             
             {/* About Dropdown (with Overview, Experience, Education & Certifications) */}
             <div 
@@ -137,15 +162,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                       : 'bg-white/95 border-slate-200 text-slate-800 shadow-slate-300/40'
                   }`}
                 >
-                  <a
-                    href="#about"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateToSection('#about');
-                      const el = document.getElementById('about');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group ${
+                  <button
+                    type="button"
+                    onClick={() => navigateToSection('#about')}
+                    className={`w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group cursor-pointer ${
                       isDarkMode 
                         ? 'hover:bg-zinc-800/80 hover:text-cyan-300 text-zinc-300' 
                         : 'hover:bg-slate-100 hover:text-cyan-600 text-slate-700'
@@ -153,17 +173,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <User className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-400 transition-colors shrink-0" />
                     <span>About Overview</span>
-                  </a>
+                  </button>
 
-                  <a
-                    href="#experience"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateToSection('#experience');
-                      const el = document.getElementById('experience');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group ${
+                  <button
+                    type="button"
+                    onClick={() => navigateToSection('#experience')}
+                    className={`w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group cursor-pointer ${
                       isDarkMode 
                         ? 'hover:bg-zinc-800/80 hover:text-cyan-300 text-zinc-300' 
                         : 'hover:bg-slate-100 hover:text-cyan-600 text-slate-700'
@@ -171,17 +186,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <Briefcase className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-400 transition-colors shrink-0" />
                     <span>Experience</span>
-                  </a>
+                  </button>
 
-                  <a
-                    href="#education"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateToSection('#education');
-                      const el = document.getElementById('experience') || document.getElementById('education');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group ${
+                  <button
+                    type="button"
+                    onClick={() => navigateToSection('#experience')}
+                    className={`w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group cursor-pointer ${
                       isDarkMode 
                         ? 'hover:bg-zinc-800/80 hover:text-cyan-300 text-zinc-300' 
                         : 'hover:bg-slate-100 hover:text-cyan-600 text-slate-700'
@@ -189,17 +199,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <GraduationCap className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-400 transition-colors shrink-0" />
                     <span>Education</span>
-                  </a>
+                  </button>
 
-                  <a
-                    href="#certifications"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateToSection('#certifications');
-                      const el = document.getElementById('certifications');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group ${
+                  <button
+                    type="button"
+                    onClick={() => navigateToSection('#certifications')}
+                    className={`w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all group cursor-pointer ${
                       isDarkMode 
                         ? 'hover:bg-zinc-800/80 hover:text-cyan-300 text-zinc-300' 
                         : 'hover:bg-slate-100 hover:text-cyan-600 text-slate-700'
@@ -207,15 +212,43 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <Award className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-400 transition-colors shrink-0" />
                     <span>Certifications</span>
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
 
-            <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
-            <a href="#services" className="hover:text-cyan-400 transition-colors">Services</a>
-            <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
-            <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
+            <button 
+              type="button"
+              onClick={() => navigateToSection('#skills')}
+              className="hover:text-cyan-400 transition-colors cursor-pointer"
+            >
+              Skills
+            </button>
+            
+            {/* Services link routing directly to /services */}
+            <Link 
+              to="/services" 
+              className={`hover:text-cyan-400 transition-colors ${
+                location.pathname === '/services' ? 'text-cyan-400' : ''
+              }`}
+            >
+              Services
+            </Link>
+
+            <button 
+              type="button"
+              onClick={() => navigateToSection('#projects')}
+              className="hover:text-cyan-400 transition-colors cursor-pointer"
+            >
+              Projects
+            </button>
+            <button 
+              type="button"
+              onClick={() => navigateToSection('#contact')}
+              className="hover:text-cyan-400 transition-colors cursor-pointer"
+            >
+              Contact
+            </button>
           </nav>
 
           {/* Right Action Bar (Large Screens) */}
@@ -296,13 +329,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               ? 'border-zinc-800 bg-zinc-950/95 text-zinc-200 backdrop-blur-xl' 
               : 'border-slate-200 bg-white/95 text-slate-800 shadow-xl backdrop-blur-xl'
           }`}>
-            <a 
-              href="#" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
+            <button 
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (location.pathname !== '/') {
+                  navigate('/');
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="block w-full text-left text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors cursor-pointer"
             >
               Home
-            </a>
+            </button>
             
             {/* Mobile About Item + Sublinks */}
             <div>
@@ -319,66 +359,68 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {mobileAboutOpen && (
                 <div className="pl-3.5 my-1 space-y-1 border-l-2 border-zinc-800 ml-1.5">
-                  <a 
-                    href="#about" 
+                  <button 
+                    type="button"
                     onClick={() => navigateToSection('#about')}
-                    className="block text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors"
+                    className="block w-full text-left text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors cursor-pointer"
                   >
                     About Overview
-                  </a>
-                  <a 
-                    href="#experience" 
+                  </button>
+                  <button 
+                    type="button"
                     onClick={() => navigateToSection('#experience')}
-                    className="block text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors"
+                    className="block w-full text-left text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors cursor-pointer"
                   >
                     Experience
-                  </a>
-                  <a 
-                    href="#education" 
+                  </button>
+                  <button 
+                    type="button"
                     onClick={() => navigateToSection('#education')}
-                    className="block text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors"
+                    className="block w-full text-left text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors cursor-pointer"
                   >
                     Education
-                  </a>
-                  <a 
-                    href="#certifications" 
+                  </button>
+                  <button 
+                    type="button"
                     onClick={() => navigateToSection('#certifications')}
-                    className="block text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors"
+                    className="block w-full text-left text-sm font-medium hover:text-cyan-400 text-zinc-400 py-1 transition-colors cursor-pointer"
                   >
                     Certifications
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
 
-            <a 
-              href="#skills" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
+            <button 
+              type="button"
+              onClick={() => navigateToSection('#skills')}
+              className="block w-full text-left text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors cursor-pointer"
             >
               Skills
-            </a>
-            <a 
-              href="#services" 
+            </button>
+            <Link 
+              to="/services" 
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
+              className={`block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors ${
+                location.pathname === '/services' ? 'text-cyan-400' : ''
+              }`}
             >
               Services
-            </a>
-            <a 
-              href="#projects" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
+            </Link>
+            <button 
+              type="button"
+              onClick={() => navigateToSection('#projects')}
+              className="block w-full text-left text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors cursor-pointer"
             >
               Projects
-            </a>
-            <a 
-              href="#contact" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors"
+            </button>
+            <button 
+              type="button"
+              onClick={() => navigateToSection('#contact')}
+              className="block w-full text-left text-base font-semibold hover:text-cyan-400 py-1.5 transition-colors cursor-pointer"
             >
               Contact
-            </a>
+            </button>
 
             <div className="pt-2 flex flex-col gap-2">
               <button
@@ -386,7 +428,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenContact();
                 }}
-                className="w-full py-3 rounded-xl text-sm font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 text-center shadow-md shadow-cyan-500/15"
+                className="w-full py-3 rounded-xl text-sm font-bold text-black bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 text-center shadow-md shadow-cyan-500/15 cursor-pointer"
               >
                 Hire Me
               </button>

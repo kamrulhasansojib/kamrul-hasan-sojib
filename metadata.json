@@ -1,6 +1,6 @@
 {
   "name": "Developer Portfolio",
-  "description": "Interactive developer portfolio with split hero layout, organic image crop, gradient border ring, floating tech badges, and responsive design.",
+  "description": "Interactive developer portfolio with client conversion-focused services, React Router v6 multi-page routing, modern dark UI, dynamic timeline and projects showcase.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
